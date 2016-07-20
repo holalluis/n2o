@@ -43,13 +43,14 @@ Arxiu per apuntar on són totes les coses importants
 		mysql -u root --password=raspberry -D n2o
 	llavors un cop dins de mysql per llegir les dades (exemple: campana 3)
 		SELECT * FROM mesures WHERE id_campana=3;
-	i es veurà una taula com la següent
-			id		id_campana	hora				temperatura	pressio	volum
-			12079	3			2016-07-11 11:59:18	30			0		150
-			12080	3			2016-07-11 12:09:19	30			-0.04	190
-			12081	3			2016-07-11 12:19:21	30			0		160
-			12082	3			2016-07-11 12:29:23	30			-0.04	120
-			12083	3			2016-07-11 12:39:25	30			-0.04	170
+	i es veurà una taula com la següent:
+	
+	id	id_campana	hora			temperatura	pressio	volum
+	12079	3		2016-07-11 11:59:18	30		0	150
+	12080	3		2016-07-11 12:09:19	30		-0.04	190
+	12081	3		2016-07-11 12:19:21	30		0	160
+	12082	3		2016-07-11 12:29:23	30		-0.04	120
+	12083	3		2016-07-11 12:39:25	30		-0.04	170
 
 * ARXIU llegeixSerial.py
 	** arxiu que va escolta el que diu l'arduino i inserta les dades a la base de dades

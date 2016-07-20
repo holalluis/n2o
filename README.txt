@@ -55,14 +55,14 @@ Arxiu per apuntar on són totes les coses importants
 	12083	3		2016-07-11 12:39:25	30		-0.04	170
 
 * ARXIU llegeixSerial.py
-	** arxiu que va escolta el que diu l'arduino i inserta les dades a la base de dades
+	** arxiu que va escoltant el que diu l'arduino i inserta les dades a la base de dades
 	** per executar: 
 		python llegeixSerial.py
 	** per parar d'escoltar: 
 		Ctrl+c
 
 * ARXIU guardarDades.sh
-	** Arxiu que anirà creant arxius CSV cada 8 hores
+	** Arxiu que va creant arxius CSV cada 8 hores
 	** Els fitxers es guarden a la carpeta ~/Desktop/dades
 	** Fitxers: campana1.csv, campana2.csv, campana3.csv i campana4.csv
 	** per executar: 

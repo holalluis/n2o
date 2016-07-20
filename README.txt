@@ -1,4 +1,4 @@
-Última modificació: 3 de maig 2016, Lluís Bosch (lbosch@icra.cat)
+Última modificació: 20 de juliol 2016, Lluís Bosch (lbosch@icra.cat)
 Arxiu per apuntar on són totes les coses importants
 
 +============================+

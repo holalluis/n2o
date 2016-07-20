@@ -4,7 +4,9 @@ Arxiu per apuntar on són totes les coses importants
 +============================+
 | INDEX                      |
 +============================+
+| * CODI ARDUINO             |
 | * FITXERS WEB              |
+| * BASE DE DADES            |
 | * ARXIU llegeixSerial.py   |
 | * ARXIU guardarDades.sh    |
 | * COM CANVIAR LA HORA      |
@@ -68,7 +70,7 @@ Arxiu per apuntar on són totes les coses importants
 	** per parar: 
 		Ctrl+c
 
-* Com canviar la hora (exemple)
+* COM CANVIAR LA HORA (EXEMPLE)
 	** Canviar la data al dia 28 de juliol de 2016 a les 18:40:00, fer:
 		sudo date --set="2016-07-28 18:40:00"
 	** Per obtenir la hora d'internet, es pot fer amb la companda ntpd (network time protocol daemon):

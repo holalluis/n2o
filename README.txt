@@ -2,13 +2,13 @@
 Arxiu per apuntar on són totes les coses importants
 
 +============================+
-| INDEX						 |
+| INDEX                      |
 +============================+
-|	* FITXERS WEB			 |
-|	* ARXIU llegeixSerial.py |
-|	* ARXIU guardarDades.sh  |
-|	* COM CANVIAR LA HORA	 |
-|	* CONFIGURACIÓ WIFI		 |
+| * FITXERS WEB              |
+| * ARXIU llegeixSerial.py   |
+| * ARXIU guardarDades.sh    |
+| * COM CANVIAR LA HORA      |
+| * CONFIGURACIÓ WIFI        |
 +============================+
 
 * CODI ARDUINO

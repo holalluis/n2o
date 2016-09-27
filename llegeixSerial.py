@@ -27,21 +27,18 @@ while True:
 	c=ser.read() # read 1 byte (1 caracter)
 
 	#busquem inici de trama
-	if(c!="I"): 
-		continue
+	if(c!="I"): continue
 
 	#significa que c=="I"
 	trama=c
 	while True:
-		c=ser.read()
-		trama+=c
-		if(c=="F"): 
-			break
+	    c=ser.read()
+	    trama+=c
+	    if(c=="F"): break
 
-	#processa la trama
-	try:
-		Pro.processa(trama)
-	except:
-		print("La trama té errors")
+	#processa la trama (pot fallar si la lectura no és correcta)
+	try:    Pro.processa(trama)
+	except: print("La trama té errors")
 
+        #espera n segons
 	time.sleep(2)

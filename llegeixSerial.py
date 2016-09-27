@@ -7,7 +7,7 @@ import serial
 import time
 
 '''classes propies'''
-import Processa
+import processa as Pro
 
 #nova connexio serial
 ser=serial.Serial('/dev/ttyACM0',115200)
@@ -20,7 +20,7 @@ print "[+] Escoltant el port serial (arduino: "+ser.port+")... (ctrl+c per parar
 '''bucle infint de lectura'''
 while True:
     trama=""
-    c=ser.read() # read 1 byte (1 char)
+    c=ser.read() # read 1 byte (1 caracter)
 
     #busquem inici de trama
     if(c!="I"): 
@@ -33,4 +33,6 @@ while True:
         trama+=c
         if(c=="F"): 
             break
-    Processa.processa(trama)
+
+    #processa la trama
+    Pro.processa(trama)

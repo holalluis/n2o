@@ -11,6 +11,7 @@ Arxiu per apuntar on són totes les coses importants
 | * ARXIU guardarDades.sh    |
 | * COM CANVIAR LA HORA      |
 | * CONFIGURACIÓ WIFI        |
+| * COM CREAR UN CSV         |
 +============================+
 
 * CODI ARDUINO
@@ -71,6 +72,7 @@ Arxiu per apuntar on són totes les coses importants
 		Ctrl+c
 
 * COM CANVIAR LA HORA (EXEMPLE)
+	** LA HORA ESTÀ EN UTC (així evitem problemes de canvi horari)
 	** Canviar la data al dia 28 de juliol de 2016 a les 18:40:00, fer:
 		sudo date --set="2016-07-28 18:40:00"
 	** Per obtenir la hora d'internet, es pot fer amb la companda ntpd (network time protocol daemon):
@@ -88,3 +90,7 @@ Arxiu per apuntar on són totes les coses importants
 		iface wlan0 inet dhcp
 			wpa-ssid "ICRA"
 			wpa-psk "#1wifi09icr@"
+
+* COM CREAR UN FITXER CSV DES DE MYSQL
+
+	echo "SELECT * FROM mesures WHERE id_campana=1;" | mysql -u root --password=raspberry -D n2o > campana1.csv;

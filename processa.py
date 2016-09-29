@@ -1,40 +1,44 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-
-'''tradueix una trama a llenguatge huma'''
+'''
+	Processa trames enviades per Arduino a llenguatge humà
+	exemple trama "IT1-450,T2-450,T3-450,T4-450,P1-200,P2-200,P3-200,P4-200F"
+	retorna json del format {T1:25,...,T4:24,P1:0.5,...,P4:0.3,C1:0,...,C4:1}
+'''
 def processa(trama):
 
-    '''exemple trama "IT1-450,T2-450,T3-450,T4-450,P1-200,P2-200,P3-200,P4-200F" '''
-    print("<TRAMA: "+trama+">")
-
     '''troba el valor analogic de temperatura o pressio especificat dins la trama,'''
-    def troba(ToP,n):
+    def troba(TPC,n):
         '''
             per exemple per trobar T1, cal cridar 'troba("T",1)'
 
             Parametres
-                * ToP: <string> "T" or "P" (temperatura o pressio)
+                * TPC: <string> "T","P" or "C" (temperatura, pressio, o cabal)
                 * n:   <int>     1,2,3,4   (numero de campana)
         '''
         #busca posicions inici i final dins la trama
-        inici=trama.find(ToP+str(n)+"-")+3
+        inici=trama.find(TPC+str(n)+"-")+3
 
         #Si es T4 o P4, la posicio final es busca de forma diferent
-        if(n==4):
-            if(ToP=="T"):
-                final=trama.find(",P1-") #després de T4 va ,P1
-            elif(ToP=="P"):
-                final=trama.find(",C") #després de P4 podria venir C#-1
-                if(final==-1):
-                    final=trama.find("F") #si no hi ha C#-1, hi haurà F
+        if n==4:
+            if TPC=="T":
+                final=trama.find(",P1-") #després de T4 va ,P1-
+            elif TPC=="P":
+                final=trama.find(",C1-") #després de P4 va ,C1-
+            elif TPC=="C":
+				final=trama.find("F") #després de C4 va F
         else:
             #manera normal (n!=4)
-            final=trama.find(","+ToP+str(n+1)+"-")
+            final=trama.find(","+TPC+str(n+1)+"-")
 
         #troba el valor analogic (0-1023) de temperatura o pressio dins la trama
         valor=int(trama[inici:final])
 
-        #converteix el valor analogic a graus o bars segons ToP
+        #si és cabal ja estem
+        if TPC=="C": 
+        	return valor
+
+        #converteix el valor analogic a graus o bars segons TPC
         '''
             mail felix:
                 T: Quan X val 180, estem a 0º,     quan X val 901 estem a 60º. 
@@ -50,13 +54,13 @@ def processa(trama):
                 M=(y1-y0)/(x1-x0)
                 N=y1-M*x1
         '''
-        if(ToP=="T"):
+        if(TPC=="T"):
             ''' punts (180,0) i (901,60)'''
             x0=180
             y0=0.0
             x1=901
             y1=60.0
-        elif(ToP=="P"):
+        elif(TPC=="P"):
             ''' punts (180,0) i (901,0.29)'''
             x0=180
             y0=0.0
@@ -69,6 +73,10 @@ def processa(trama):
         M=(y1-y0)/(x1-x0)
         N=y1-M*x1
         conv=M*valor+N
+
+        '''elimina pressió negativa (a vegades surt -0.0)'''
+        if TPC=="P":
+        	conv=max(0,conv)
 
         '''fi'''
         return round(conv,2)
@@ -83,24 +91,22 @@ def processa(trama):
     P2=troba("P",2)
     P3=troba("P",3)
     P4=troba("P",4)
+    '''cabal campanes 1,2,3,4'''
+    C1=troba("C",1)
+    C2=troba("C",2)
+    C3=troba("C",3)
+    C4=troba("C",4)
 
     '''stdout'''
+    print("<TRAMA REBUDA: "+trama+">")
     print("     T1="+str(T1)+"ºC, T2="+str(T2)+"ºC, T3="+str(T3)+"ºC, T4="+str(T4)+"ºC")
     print("     P1="+str(P1)+" bar, P2="+str(P2)+" bar, P3="+str(P3)+" bar, P4="+str(P4)+" bar")
+    print("     C1="+str(C1)+", C2="+str(C2)+", C3="+str(C3)+", C4="+str(C4))
     print("")
+    '''return objecte json'''
+    return {"T1":T1,"T2":T2,"T3":T3,"T4":T4,"P1":P1,"P2":P2,"P3":P3,"P4":P4,"C1":C1,"C2":C2,"C3":C3,"C4":C4}
 
-    '''
-        NEXT STEP: insertar a la base de dades
-        import urllib2
-        urllib2.urlopen("http://localhost/n2o/novaMesura.php?campana=1&t="+str(T1)+"&p="+str(P1)+"&v=1");
-        urllib2.urlopen("http://localhost/n2o/novaMesura.php?campana=2&t="+str(T2)+"&p="+str(P2)+"&v=1");
-        urllib2.urlopen("http://localhost/n2o/novaMesura.php?campana=3&t="+str(T3)+"&p="+str(P3)+"&v=1");
-        urllib2.urlopen("http://localhost/n2o/novaMesura.php?campana=4&t="+str(T4)+"&p="+str(P4)+"&v=1");
-        urllib2.urlopen("http://localhost/n2o/novaMesura.php?campana=1&t=1&p=1&v=1");
-        resposta = urllib2.urlopen("http://localhost/n2o/novaMesura.php?"+line);
-        print resposta.read()
-    '''
 
 '''TEST'''
-#processa("IT1-449,T2-451,T3-448,T4-450,P1-180,P2-182,P3-180,P4-181F")
-#processa("IT1-555,T2-666,T3-777,T4-444,P1-190,P2-200,P3-300,P4-400,C1-1,C3-1F")
+#processa("IT1-458,T2-462,T3-458,T4-466,P1-180,P2-182,P3-182,P4-184,C1-0,C2-0,C3-0,C4-0F")
+#processa("IT1-458,T2-462,T3-458,T4-466,P1-180,P2-182,P3-182,P4-184,C1-0,C2-0,C3-0,C4-1F")

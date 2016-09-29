@@ -1,4 +1,4 @@
-Última modificació: 20 de juliol 2016, Lluís Bosch (lbosch@icra.cat)
+Última modificació: 29 de setembre 2016, Lluís Bosch (lbosch@icra.cat)
 Arxiu per apuntar on són totes les coses importants
 
 +============================+
@@ -7,8 +7,6 @@ Arxiu per apuntar on són totes les coses importants
 | * CODI ARDUINO             |
 | * FITXERS WEB              |
 | * BASE DE DADES            |
-| * ARXIU llegeixSerial.py   |
-| * ARXIU guardarDades.sh    |
 | * COM CANVIAR LA HORA      |
 | * CONFIGURACIÓ WIFI        |
 | * COM CREAR UN CSV         |
@@ -54,22 +52,6 @@ Arxiu per apuntar on són totes les coses importants
 	12081	3		2016-07-11 12:19:21	30		0	160
 	12082	3		2016-07-11 12:29:23	30		-0.04	120
 	12083	3		2016-07-11 12:39:25	30		-0.04	170
-
-* ARXIU llegeixSerial.py
-	** arxiu que va escoltant el que diu l'arduino i inserta les dades a la base de dades
-	** per executar: 
-		python llegeixSerial.py
-	** per parar d'escoltar: 
-		Ctrl+c
-
-* ARXIU guardarDades.sh
-	** Arxiu que va creant arxius CSV cada 8 hores
-	** Els fitxers es guarden a la carpeta ~/Desktop/dades
-	** Fitxers: campana1.csv, campana2.csv, campana3.csv i campana4.csv
-	** per executar: 
-		bash guardarDades.sh
-	** per parar: 
-		Ctrl+c
 
 * COM CANVIAR LA HORA (EXEMPLE)
 	** LA HORA ESTÀ EN UTC (així evitem problemes de canvi horari)

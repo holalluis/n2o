@@ -98,10 +98,10 @@ def processa(trama):
     C4=troba("C",4)
 
     '''stdout'''
-    print("<TRAMA REBUDA: "+trama+">")
-    print("     T1="+str(T1)+"ºC, T2="+str(T2)+"ºC, T3="+str(T3)+"ºC, T4="+str(T4)+"ºC")
-    print("     P1="+str(P1)+" bar, P2="+str(P2)+" bar, P3="+str(P3)+" bar, P4="+str(P4)+" bar")
-    print("     C1="+str(C1)+", C2="+str(C2)+", C3="+str(C3)+", C4="+str(C4))
+    #print("<TRAMA REBUDA: "+trama+">")
+    print("Temperatura -> T1="+str(T1)+"ºC, T2="+str(T2)+"ºC, T3="+str(T3)+"ºC, T4="+str(T4)+"ºC")
+    print("Pressió     -> P1="+str(P1)+" bar, P2="+str(P2)+" bar, P3="+str(P3)+" bar, P4="+str(P4)+" bar")
+    print("Pols cabal  -> C1="+str(C1)+", C2="+str(C2)+", C3="+str(C3)+", C4="+str(C4))
     print("")
     '''return objecte json'''
     return {"T1":T1,"T2":T2,"T3":T3,"T4":T4,"P1":P1,"P2":P2,"P3":P3,"P4":P4,"C1":C1,"C2":C2,"C3":C3,"C4":C4}

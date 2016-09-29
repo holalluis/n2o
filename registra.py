@@ -1,7 +1,10 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
 '''
 	Insertar lectures a la base de dades
+	"dades" és un objecte json creat a "lectura.py" amb els camps:
+	T1,T2,T3,T4,P1,P2,P3,P4,C1,C2,C3,C4,V1,V2,V3,V4.
 '''
-
 import urllib2
 import sys
 

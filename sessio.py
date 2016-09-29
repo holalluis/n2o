@@ -17,7 +17,6 @@ C4=dades['C4']
 for i in range(4): sys.stdout.write("\033[F\033[K")
 
 while True:
-
 	dades=Lec.lectura() #json
 
 	if(dades['C1']!=C1): V1+=10

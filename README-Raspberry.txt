@@ -1,16 +1,16 @@
 Última modificació: 29 de setembre 2016, Lluís Bosch (lbosch@icra.cat)
 Arxiu per apuntar on són totes les coses importants
 
-+============================+
-| INDEX                      |
-+============================+
-| * CODI ARDUINO             |
-| * FITXERS WEB              |
-| * BASE DE DADES            |
-| * COM CANVIAR LA HORA      |
-| * CONFIGURACIÓ WIFI        |
-| * COM CREAR UN CSV         |
-+============================+
++=============================+
+| INDEX                       |
++=============================+
+| * CODI ARDUINO              |
+| * FITXERS WEB               |
+| * BASE DE DADES             |
+| * COM CANVIAR LA HORA       |
+| * CONFIGURACIÓ WIFI         |
+| * COM CREAR UN CSV DE MYSQL |
++=============================+
 
 * CODI ARDUINO
 	** esta a la carpeta ~/codi_arduino
@@ -74,5 +74,4 @@ Arxiu per apuntar on són totes les coses importants
 			wpa-psk "#1wifi09icr@"
 
 * COM CREAR UN FITXER CSV DES DE MYSQL
-
 	echo "SELECT * FROM mesures WHERE id_campana=1;" | mysql -u root --password=raspberry -D n2o > campana1.csv;

@@ -1,12 +1,13 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+'''Mostra continuament les dades del sensor sense registrar-les'''
 import lectura as Lec
 import time
 import sys
 
-'''Mostra continuament les dades del sensor sense registrar-les'''
-
 while True:
 
-	Lec.lectura()
+	Lec.lectura() #mostra les dades instantànies
 
 	print("Ctrl-C per parar...")
 

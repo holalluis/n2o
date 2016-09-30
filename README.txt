@@ -1,19 +1,50 @@
-Última modificació: 29 de setembre 2016, Lluís Bosch (lbosch@icra.cat)
-Arxiu per apuntar on són totes les coses importants
++=====+==================================================+
+| N2O | Sistema de Sensors + Arduino + Raspberry + MySQL |
++=====+==================================================+
+
+Última modificació: 30 de setembre 2016, Lluís Bosch (lbosch@icra.cat)
+
+Idea General:
+
+ Tª +---------+    +---------+
+ P  | Sensors |--->|         |
+ V  +---------+    |         |       +-----------+
+                   | Arduino |<----->| Raspberry |<-----USUARI
+                   | Mega    |       | Pi        |
+   +----------+    |         |       +-----------+
+   | Vàlvules |<---|         |
+   +----------+    |         |
+                   +---------+
+
+
+L'Arduino està CONTÍNUAMENT ENVIANT DADES AL PORT SERIAL del Raspberry Pi
+
+El Raspberry Pi processa les dades cada X temps, i si l'usuari vol, les emmagatzema a una base de dades MySQL
+
+ Arxius Python (controlables per l'usuari)
+===============
+
+1. lectura.py  : funció que llegeix la primera trama disponible i mostra les dades de temperatura i pressió i cabal
+2. monitor.py  : mostra contínuament les dades sense registrar-les a la base de dades
+3. registra.py : funció que registra una lectura a la bbdd 
+4. sessio.py   : fa lectures contínuament i les inserta a la base de dades
+
+
+ Arxius Raspberry
+==================
 
 +=============================+
 | INDEX                       |
 +=============================+
 | * CODI ARDUINO              |
 | * FITXERS WEB               |
-| * BASE DE DADES             |
+| * BASE DE DADES MYSQL       |
 | * COM CANVIAR LA HORA       |
 | * CONFIGURACIÓ WIFI         |
 | * COM CREAR UN CSV DE MYSQL |
 +=============================+
 
-* CODI ARDUINO
-	** esta a la carpeta ~/codi_arduino
+* CODI ARDUINO (nodeGasos.ino)
 	** es pot modificar el codi de dues maneres:
 		1. Obrint la interfície gràfica (startx) i executant la comanda arduino
 		2. Des de la línia de comanda, utilitzant ino:
@@ -38,7 +69,7 @@ Arxiu per apuntar on són totes les coses importants
 		wlan0   Link encap:Ethernet  HWaddr 00:b3:13:d1:25:ff
 				inet addr: 192.168.102.193  Bcast:192.168.103.255  Mask:255.255.254.0
 
-* BASE DE DADES
+* BASE DE DADES MYSQL
 	es diu "n2o" i la taula es diu "mesures"
 	per entrar al mysql:
 		mysql -u root --password=raspberry -D n2o

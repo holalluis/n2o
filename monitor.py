@@ -7,11 +7,12 @@ import sys
 
 while True:
 
-	Lec.lectura() #mostra les dades instantànies
+    Lec.lectura() #mostra les dades instantànies
 
-	print("Ctrl-C per parar...")
+    print("Ctrl-C per parar...")
 
-	time.sleep(2)
+    time.sleep(5)
 
-	#esborra linies
-	for i in range(5): sys.stdout.write("\033[F\033[K")
+    #esborra linies
+    for i in range(5): 
+        sys.stdout.write("\033[F\033[K")

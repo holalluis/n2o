@@ -21,17 +21,18 @@ L'Arduino està CONTÍNUAMENT ENVIANT DADES AL PORT SERIAL del Raspberry Pi
 
 El Raspberry Pi processa les dades cada X temps, i si l'usuari vol, les emmagatzema a una base de dades MySQL
 
- Arxius Python (controlables per l'usuari)
+ Arxius Python: "Mòduls" (controlables per l'usuari)
 ===============
 
-1. lectura.py  : funció que llegeix la primera trama disponible i mostra les dades de temperatura i pressió i cabal
-2. monitor.py  : mostra contínuament les dades sense registrar-les a la base de dades
-3. registra.py : funció que registra una lectura a la bbdd 
-4. sessio.py   : fa lectures contínuament i les inserta a la base de dades
+1. monitor.py  : mostra contínuament les dades sense registrar-les a la base de dades
+2. sessio.py   : fa lectures contínuament i les inserta a la base de dades
+3. lectura.py  : funció que llegeix la primera trama disponible i ho mostra
+4. registra.py : funció que registra una sola lectura a la bbdd 
+5. processa.py : tradueix una trama de bytes de l'Arduino a JSON
 
 
- Arxius Raspberry
-==================
+ Altres arxius
+===============
 
 +=============================+
 | INDEX                       |

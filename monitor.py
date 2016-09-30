@@ -1,18 +1,30 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-'''Mostra continuament les dades del sensor sense registrar-les'''
-import lectura as Lec
-import time
+import processa as Pro
+import serial
 import sys
 
+#connecta amb l'arduino
+ser=serial.Serial('/dev/ttyACM0',9600)
+print "Port serial: "+ser.port+". open: "+str(ser.isOpen()),
+
+print(" --> Ctrl-C per parar")
+
+print "\n\n\n\n"
+
+#linies a esborrar per pantallazo
+linies=4 
+
+trama=""
 while True:
+	ser.flush()
+	c=ser.read()
+	trama+=c
 
-    Lec.lectura() #mostra les dades instantànies
-
-    print("Ctrl-C per parar...")
-
-    time.sleep(5)
-
-    #esborra linies
-    for i in range(5): 
-        sys.stdout.write("\033[F\033[K")
+	if c is "F":
+		try: 
+			for i in range(linies): sys.stdout.write("\033[F\033[K")
+			Pro.processa(trama)
+		except: 
+			for i in range(linies): sys.stdout.write("\033[B")
+		trama=""

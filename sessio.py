@@ -18,7 +18,8 @@ for i in range(4): sys.stdout.write("\033[F\033[K")
 
 #registra la primera lectura disponible
 while True:
-    dades=Lec.lectura() #json
+
+    dades=Lec.lectura() #llegeix Arduino
 
     if(dades['C1']!=C1): V1+=10
     if(dades['C2']!=C2): V2+=10
@@ -36,7 +37,13 @@ while True:
     C4=dades['C4']
 
     try:
-        Reg.registra(dades)
-        break
-    else:
-        time.sleep(1)
+		print(dades)
+		#Reg.registra(dades)
+		#esborra 4 linies
+		for i in range(9): sys.stdout.write("\033[F\033[K")
+    except:
+        pass
+
+    time.sleep(1)
+
+

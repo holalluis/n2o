@@ -69,7 +69,8 @@ Programes
 				inet addr: *192.168.102.200*  Bcast:192.168.103.255  Mask:255.255.254.0
 
 * BASE DE DADES MYSQL
-	Es diu "n2o" i dins hi ha una sola taula anomenada "mesures" {id,id_campana,hora,temperatura,pressio,volum}
+	Es diu "n2o" i dins hi ha una sola taula anomenada 
+  "mesures" {id,id_campana,hora,temperatura,pressio,volum}
 	per entrar al mysql:
 		mysql -u root --password=raspberry -D n2o
 	llavors un cop dins de mysql, podem enviar comandes MySQL, per exemple:

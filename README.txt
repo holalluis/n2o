@@ -57,16 +57,12 @@ Programes
 			important: per arduino mega 2560, cal fer build i upload amb la opcio -b mega2560 (veure documentacio a la web de ino)
 
 * FITXERS WEB
-	** estan a la carpeta:
-		/var/www/n2o
+	** estan a la carpeta /var/www/n2o
 	** per veure la web des d'un altre ordinador: 
 		http://ip-del-raspberry/n2o/
 		per exemple: http://192.168.102.200/n2o
-	** per saber la ip:
+	** per saber la ip ("inet addr"):
 		ifconfig
-	** es veurà una cosa semblant a:
-		wlan0   Link encap:Ethernet  HWaddr 00:b3:13:d1:25:ff
-				inet addr: *192.168.102.200*  Bcast:192.168.103.255  Mask:255.255.254.0
 
 * BASE DE DADES MYSQL
 	Es diu "n2o" i dins hi ha una sola taula anomenada 

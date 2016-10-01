@@ -1,6 +1,11 @@
-
 PENDENT PER FER
+===============
 
-(NEXT) * Testos per insertar dades
-* Afegir arxius web al projecte
+*Testos per insertar dades *NEXT*
+*Implementar comandes Obrir i Tancar
+*Implementar canviar temps entre cada dada
+*Implementar tamany màxim base de dades
+*Afegir arxius web al projecte
 
+modeline (no modificar)
+vim:ft=help:

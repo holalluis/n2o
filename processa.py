@@ -1,22 +1,23 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-
-'''interpreta una trama i retorna json'''
-
+'''Interpreta una trama i retorna json'''
 def processa(trama):
 
-	'''troba el valor analogic de temperatura o pressio especificat dins la trama,'''
+	'''Les trames són strings que comencen per 'I' i acaben per 'F' '''
+	if trama[0] is not "I": raise RuntimeError("Trama incorrecta");
+	if trama[len(trama)-1] is not "F": raise RuntimeError("Trama incorrecta");
+	'''troba el valor analògic de temperatura o pressió dins la trama'''
 	def troba(TPC,n):
 		'''
-			per exemple per trobar T1, cal cridar 'troba("T",1)'
+			exemple per T1 = 'troba("T",1)'
 			Parametres
-			* TPC: <string> "T","P" or "C" (temperatura, pressio, o cabal)
-			* n:   <int>     1,2,3,4   (numero de campana)
+			* TPC: <string> "T","P" ò "C" (temperatura, pressió, o pols cabal)
+			* n:   <int>     1,2,3,4   (número de campana)
 		'''
 		#busca posicions inici i final dins la trama
 		inici=trama.find(TPC+str(n)+"-")+3
 
-		#Si es T4 o P4 o C4, la posicio final es busca de forma diferent
+		#Si es T4 ò P4 ò C4, la posició final es busca de forma diferent
 		if n==4:
 			if TPC=="T":
 				final=trama.find(",P1-") #després de T4 va ,P1-
@@ -25,13 +26,13 @@ def processa(trama):
 			elif TPC=="C":
 				final=trama.find("F") #després de C4 va F
 		else:
-			#manera normal (n!=4)
+			#manera normal (n=1,2,3)
 			final=trama.find(","+TPC+str(n+1)+"-")
 
-		#troba el valor analogic (0-1023) de temperatura o pressio dins la trama
+		#troba el valor analogic (0-1023) dins la trama
 		valor=int(trama[inici:final])
 
-		#si és cabal ja estem
+		#si és pols cabal ja estem (val <0,1>)
 		if TPC=="C": return valor
 
 		#converteix el valor analogic a graus o bars segons TPC
@@ -39,50 +40,37 @@ def processa(trama):
 			mail felix:
 				T: Quan X val 180, estem a 0º,     quan X val 901 estem a 60º. 
 				P: Quan X val 180, estem a 0 bars, quan X val 901 estem a 0,29 bars
-
 			Calculem la recta amb dos punts (x0,y0) i (x1,y1)
 				y=Mx+N 
 			on:
-				M=pendent, 
-				N=ordenada, 
-				x=valor analogic, 
-				y=pressio (bar) o temperatura (ºC)
+				M=pendent, N=ordenada, x=valor analogic, y=pressio (bar) o temperatura (ºC)
+			fórmules:
 				M=(y1-y0)/(x1-x0)
 				N=y1-M*x1
 		'''
 		if(TPC=="T"):
-			''' punts (180,0) i (901,60)'''
+			'''punts (180,0) i (901,60)'''
 			x0=180; y0=0.0; x1=901; y1=60.0;
 		elif(TPC=="P"):
-			''' punts (180,0) i (901,0.29)'''
+			'''punts (180,0) i (901,0.29)'''
 			x0=180; y0=0.0; x1=901; y1=0.29;
-		else:
-			quit("ERROR")
 
-		'''aplicar formula general de la recta y=Mx+N'''
+		'''aplicar la fórmula general de la recta y=Mx+N'''
 		M=(y1-y0)/(x1-x0)
 		N=y1-M*x1
 		conv=M*valor+N
 
 		'''esborra pressió negativa (i.e. -0.0)'''
-		if TPC is "P": 
-			conv=max(conv,0)
+		if TPC is "P": conv=max(conv,0)
 
 		'''fi'''
 		return round(conv,2)
 
-	'''temperatura campanes 1,2,3,4'''
-	'''pressio campanes 1,2,3,4'''
-	T1=troba("T",1); P1=troba("P",1)
-	T2=troba("T",2); P2=troba("P",2)
-	T3=troba("T",3); P3=troba("P",3)
-	T4=troba("T",4); P4=troba("P",4)
-
-	'''cabal campanes 1,2,3,4'''
-	C1=troba("C",1)
-	C2=troba("C",2)
-	C3=troba("C",3)
-	C4=troba("C",4)
+	'''Temperatura, Pressió i Cabal'''
+	T1=troba("T",1); P1=troba("P",1); C1=troba("C",1)
+	T2=troba("T",2); P2=troba("P",2); C2=troba("C",2)
+	T3=troba("T",3); P3=troba("P",3); C3=troba("C",3)
+	T4=troba("T",4); P4=troba("P",4); C4=troba("C",4)
 
 	'''stdout'''
 	print("TRAMA "+trama)
@@ -93,7 +81,5 @@ def processa(trama):
 	'''return objecte json'''
 	return {"T1":T1,"T2":T2,"T3":T3,"T4":T4,"P1":P1,"P2":P2,"P3":P3,"P4":P4,"C1":C1,"C2":C2,"C3":C3,"C4":C4}
 
-'''TEST
-processa("IT1-458,T2-462,T3-458,T4-466,P1-180,P2-182,P3-182,P4-184,C1-0,C2-0,C3-0,C4-0F")
-processa("IT1-458,T2-462,T3-458,T4-466,P1-180,P2-482,P3-182,P4-184,C1-0,C2-0,C3-0,C4-1F")
-'''
+'''TEST'''
+#processa("IT1-458,T2-462,T3-458,T4-466,P1-180,P2-182,P3-182,P4-184,C1-0,C2-0,C3-0,C4-0F")

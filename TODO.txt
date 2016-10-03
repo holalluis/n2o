@@ -1,7 +1,7 @@
 PENDENT PER FER
 ===============
 
-*Implementar comandes Obrir i Tancar
+*Implementar comandes Obrir i Tancar *NEXT*
 *Implementar tamany màxim base de dades (12 mesos?)
 *Afegir arxius web al github
 

@@ -8,8 +8,14 @@
 '''
 import urllib2
 import sys
+import threading
 
 def registra(dades):
+    t=threading.Thread(target=worker,args=(dades))
+    t.start()
+
+def worker(dades):
+
     #desempaqueta dades (Temperatura, Pressio, Volum)
     T1=dades['T1']; P1=dades['P1']; V1=dades['V1']
     T2=dades['T2']; P2=dades['P2']; V2=dades['V2']

@@ -53,9 +53,7 @@ while True:
     #afegeix el volum a l'objecte "d"
     d['V1']=V1;d['V2']=V2;d['V3']=V3;d['V4']=V4
     #registra a la base de dades
-    #print(d)
     Reg.registra(d)
     #esperem X temps
     time.sleep(2)
     ser.flushInput()
-    #TODO for i in range(4): sys.stdout.write("\033[F\033[K")

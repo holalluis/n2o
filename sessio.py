@@ -1,44 +1,56 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 '''
-	Comença a llegir i guardar dades
+    Comença a llegir i guardar dades
+    és com un monitor amb la diferència que guarda els valors a la base de dades
 '''
-import time
-import sys
-import lectura as Lec
+import serial
 import registra as Reg
+import processa as Pro
+import sys
 
-#Volum inicial de les 4 campanes (L)
-V1=0; V2=0; V3=0; V4=0;
+#connecta amb l'arduino via serial
+ser=serial.Serial('/dev/ttyACM0',9600)
+print("Port serial: "+ser.port+". open: "+str(ser.isOpen())+" --> Ctrl-C per parar")
 
-#primera lectura per saber estat inicial pols cabal
-d=Lec.lectura()
-C1=d['C1']; C2=d['C2']; C3=d['C3']; C4=d['C4']
+'''
+    Volum inicial de les 4 campanes (L) = 0
+    Poso -10 pq el 1r cop que comprovem el pols sumarem 10 i quedarà igual a zero
+'''
+V1=-10;V2=-10;V3=-10;V4=-10
+'''
+    Estat del pols inicial: posem un valor diferent a 0 ò 1
+    Com funciona el pols: varia el bit Cn quan s'envia el pols (on n={1,2,3,4})
+    0000000011111111111111111111000000000000000000111111111...
+            ^pols 1             ^pols2            ^pols3
+'''
+C1=2;C2=2;C3=2;C4=2
 
-#esborra 4 linies
-for i in range(4): sys.stdout.write("\033[F\033[K")
-
-#registra lectures a la base de dades
+#comença bucle de lectura
+trama=""
 while True:
-    d=Lec.lectura() #llegeix Arduino
+    ser.flush()
+    c=ser.read()
+    trama+=c
+    if c is "F":
+        try: 
+            d=Pro.processa(trama) #saltarà si la trama és incorrecta
+        except: 
+            trama=""
+            continue
 
-		#si el pols canvia, suma 10 L
+    #si som aquí vol dir que la trama és correcta
+    #si l'estat del pols ha canviat, suma 10 L
     if(d['C1']!=C1): V1+=10
     if(d['C2']!=C2): V2+=10
     if(d['C3']!=C3): V3+=10
     if(d['C4']!=C4): V4+=10
-
-		#afegeix el volum a l'objecte "d"
-    d['V1']=V1; d['V2']=V2; d['V3']=V3; d['V4']=V4
-
-		#update valor del pols
-    C1=d['C1']; C2=d['C2']; C3=d['C3']; C4=d['C4'];
-
-    try:
-			print(d)
-			#Reg.registra(d)
-			#esborra línies
-			for i in range(9): sys.stdout.write("\033[F\033[K")
-			time.sleep(1)
-    except: 
-			pass
+    #update estat del pols
+    C1=d['C1'];C2=d['C2'];C3=d['C3'];C4=d['C4'];
+    #afegeix el volum a l'objecte "d"
+    d['V1']=V1;d['V2']=V2;d['V3']=V3;d['V4']=V4
+    #registra a la base de dades
+    Reg.registra(d)
+    #esperem X temps
+    time.sleep(1)
+    #TODO for i in range(4): sys.stdout.write("\033[F\033[K")

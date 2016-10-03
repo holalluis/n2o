@@ -28,9 +28,8 @@ Programes
 
 1. monitor.py  : mostra contínuament les dades sense registrar-les a la base de dades
 2. sessio.py   : fa lectures contínuament i les inserta a la base de dades
-3. lectura.py  : funció que llegeix la primera trama disponible i ho mostra
-4. registra.py : funció que registra una sola lectura a la bbdd 
-5. processa.py : tradueix una trama de bytes de l'Arduino a JSON
+3. registra.py : funció que registra una sola lectura a la bbdd 
+4. processa.py : tradueix una trama de bytes de l'Arduino a JSON
 
 +-----------------------------+
 | Altres arxius               |

@@ -15,13 +15,13 @@ linies=4
 #crea una trama buida i comença a llegir bytes
 trama=""
 while True:
-	ser.flush()
-	c=ser.read()
-	trama+=c
-	if c is "F":
-		try: 
-			for i in range(linies): sys.stdout.write("\033[F\033[K")
-			Pro.processa(trama)
-		except: 
-			for i in range(linies): sys.stdout.write("\033[B")
-		trama=""
+    ser.flush()
+    c=ser.read()
+    trama+=c
+    if c is "F":
+        try: 
+            for i in range(linies): sys.stdout.write("\033[F\033[K")
+            Pro.processa(trama)
+        except: 
+            for i in range(linies): sys.stdout.write("\033[B")
+        trama=""

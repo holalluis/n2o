@@ -30,7 +30,6 @@ C1=2;C2=2;C3=2;C4=2
 #comença bucle de lectura
 trama=""
 while True:
-    ser.flush()
     c=ser.read()
     trama+=c
     if c is "F":
@@ -54,8 +53,9 @@ while True:
     #afegeix el volum a l'objecte "d"
     d['V1']=V1;d['V2']=V2;d['V3']=V3;d['V4']=V4
     #registra a la base de dades
-    print(d)
+    #print(d)
     Reg.registra(d)
     #esperem X temps
-    #time.sleep(1)
+    time.sleep(2)
+    ser.flushInput()
     #TODO for i in range(4): sys.stdout.write("\033[F\033[K")

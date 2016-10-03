@@ -15,7 +15,6 @@ linies=4
 #crea una trama buida i comença a llegir bytes
 trama=""
 while True:
-    ser.flush()
     c=ser.read()
     trama+=c
     if c is "F":

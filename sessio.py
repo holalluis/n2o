@@ -8,6 +8,7 @@ import serial
 import registra as Reg
 import processa as Pro
 import sys
+import time
 
 #connecta amb l'arduino via serial
 ser=serial.Serial('/dev/ttyACM0',9600)
@@ -35,9 +36,12 @@ while True:
     if c is "F":
         try: 
             d=Pro.processa(trama) #saltarà si la trama és incorrecta
+            trama=""
         except: 
             trama=""
             continue
+    else:
+        continue #continua afegint caracters a la trama
 
     #si som aquí vol dir que la trama és correcta
     #si l'estat del pols ha canviat, suma 10 L
@@ -50,7 +54,8 @@ while True:
     #afegeix el volum a l'objecte "d"
     d['V1']=V1;d['V2']=V2;d['V3']=V3;d['V4']=V4
     #registra a la base de dades
+    print(d)
     Reg.registra(d)
     #esperem X temps
-    time.sleep(1)
+    #time.sleep(1)
     #TODO for i in range(4): sys.stdout.write("\033[F\033[K")

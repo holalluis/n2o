@@ -19,15 +19,13 @@ Idea General (esquema)
 
 L'Arduino està CONTÍNUAMENT ENVIANT DADES AL PORT SERIAL del Raspberry Pi
 
-El Raspberry pot donar la ordre de obrir i tancar les Vàlvules amb les ordres "O" i "T" (exemple: 'O1' obre la vàlvula 1)
-
 El Raspberry Pi processa les dades cada X temps, i si l'usuari vol, les emmagatzema a una base de dades MySQL
 
 Programes
 =========
 
 1. monitor.py  : mostra contínuament les dades sense registrar-les a la base de dades
-2. manual.py   : permet obrir i tancar les vàlvules. Per exemple, la comanda "o1" obre la vàlvula 1
+2. manual.py   : permet obrir/tancar les vàlvules. Pe exemple, "o1" obre la vàlvula 1
 3. sessio.py   : fa lectures contínuament (cada X temps) i les inserta a la base de dades
 
 Back-end

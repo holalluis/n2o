@@ -9,10 +9,20 @@ import registra as Reg
 import processa as Pro
 import sys
 import time
+import os
+
+#Arguments
+if len(sys.argv)!=2:
+	print "Temps no especificat, sintaxi: python "+sys.argv[0]+" segons"
+	print 'Number of arguments:', len(sys.argv), 'arguments.'
+	sys.exit()
+
+tempsEspera=sys.argv[1]
+print("Adquirint dades cada %s segons" %tempsEspera)
 
 #connecta amb l'arduino via serial
 ser=serial.Serial('/dev/ttyACM0',9600)
-print("Port serial: "+ser.port+". open: "+str(ser.isOpen())+" --> Ctrl-C per parar")
+print("Port serial: "+ser.port+". open: "+str(ser.isOpen())+" --> Ctrl-C per parar\n\n")
 
 '''
     Volum inicial de les 4 campanes (L) = 0
@@ -58,5 +68,9 @@ while True:
     except:
 	   print("Dades no insertades")
     #esperem X temps
-    time.sleep(2)
+    time.sleep(float(tempsEspera))
+    #flush input! IMPORTANTISSIM
     ser.flushInput()
+    #neteja pantalla
+    os.system('clear')
+

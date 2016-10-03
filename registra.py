@@ -9,12 +9,16 @@
 import urllib2
 import sys
 import threading
+import time
 
 def registra(dades):
-    t=threading.Thread(target=worker,args=(dades))
+    t=threading.Thread(target=worker,args=[dades])
     t.start()
 
 def worker(dades):
+	
+    #mostra la hora
+    print "\n", time.ctime(), "UTC\n"
 
     #desempaqueta dades (Temperatura, Pressio, Volum)
     T1=dades['T1']; P1=dades['P1']; V1=dades['V1']

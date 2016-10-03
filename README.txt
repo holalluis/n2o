@@ -27,12 +27,14 @@ Programes
 =========
 
 1. monitor.py  : mostra contínuament les dades sense registrar-les a la base de dades
-2. sessio.py   : fa lectures contínuament (cada X temps) i les inserta a la base de dades
+2. manual.py   : permet obrir i tancar les vàlvules. Per exemple, la comanda "o1" obre la vàlvula 1
+3. sessio.py   : fa lectures contínuament (cada X temps) i les inserta a la base de dades
 
 Back-end
 ========
 1. processa.py : funció que tradueix una trama de bytes de l'Arduino a JSON
-2. registra.py : funció que registra una sola lectura a la bbdd 
+2. registra.py : funció que registra una sola lectura a la base de dades 
+3. virtual.py  : funció que simula un arduino enviant trames
 
 +-----------------------------+
 | Altres arxius               |

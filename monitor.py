@@ -7,7 +7,13 @@ import processa as Pro
 import serial
 import sys
 #connecta amb l'arduino via serial
-ser=serial.Serial('/dev/ttyACM0',9600)
+try:
+	ser=serial.Serial('/dev/ttyACM0',9600)
+except:
+	print("CREANT SERIAL VIRTUAL")
+	import virtual
+	ser=virtual.Serial()
+	
 print("Port serial: "+ser.port+". open: "+str(ser.isOpen())+" --> Ctrl-C per parar")
 print("\n\n\n\n")
 #linies a esborrar per pantallazo

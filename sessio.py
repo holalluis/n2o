@@ -13,15 +13,22 @@ import os
 
 #Arguments
 if len(sys.argv)!=2:
-	print "Temps no especificat, sintaxi: python "+sys.argv[0]+" segons"
-	print 'Number of arguments:', len(sys.argv), 'arguments.'
+	print "Temps no especificat. Sintaxi: python "+sys.argv[0]+" segons"
+	#print 'Number of arguments:', len(sys.argv), 'arguments.'
 	sys.exit()
 
 tempsEspera=sys.argv[1]
+os.system('clear')
 print("Adquirint dades cada %s segons" %tempsEspera)
 
 #connecta amb l'arduino via serial
-ser=serial.Serial('/dev/ttyACM0',9600)
+try:
+	ser=serial.Serial('/dev/ttyACM0',9600)
+except:
+	print("CREANT SERIAL VIRTUAL")
+	import virtual
+	ser=virtual.Serial()
+
 print("Port serial: "+ser.port+". open: "+str(ser.isOpen())+" --> Ctrl-C per parar\n\n")
 
 '''

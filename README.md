@@ -34,10 +34,11 @@ Web
 Per veure les dades i descarregar-les en format CSV s'ha d'accedir a la web dins el raspberry des d'un mòbil o ordinador 
 que estigui a la mateixa xarxa wifi que el Raspberry. Escriure al navegador:
 
-http://[ip-del-raspberry]/n2o
+http://[ip-del-raspberry]/n2o/ (per exemple: http://192.168.102.200/n2o)
 
-Per saber la ip del raspberry es pot executar la comanda "ifconfig"
-La ip serà una cosa semblant a 192.168.102.200
+Per saber la ip ("inet addr"): executar la comanda ifconfig a la consola
+Els fitxers de la web estan a la carpeta web/ i dins el Raspberry han de ser a la carpeta /var/www/n2o.
+Per veure la web des d'un altre ordinador (o el mòbil): 
 
 Back-end (arxius de desenvolupament)
 ====================================
@@ -49,7 +50,7 @@ Back-end (arxius de desenvolupament)
 Altres arxius
 =============
 
-## CODI ARDUINO (arduino/nodeGasos.ino)
+## Codi Arduino (arxiu arduino/nodegasos.ino)
 
 Es pot modificar el codi des del raspberry utilitzant ino (http://inotool.org). Algunes comandes:
 
@@ -66,15 +67,7 @@ Aquesta opció és ideal per treballar de forma remota. Important: per arduino m
 ino build -b mega2560
 ```
 
-* FITXERS WEB
-Estan a la carpeta web/ i dins el Raspberry han de ser a la carpeta /var/www/n2o.
-Per veure la web des d'un altre ordinador (o el mòbil): 
-
-http://[ip-del-raspberry]/n2o/ (per exemple: http://192.168.102.200/n2o)
-
-Per saber la ip ("inet addr"): executar la comanda ifconfig a la consola
-
-* BASE DE DADES MYSQL
+## Base de dades MySQL
 
 La base de dades Es diu "n2o" i conté una única taula anomenada "mesures" {id,id_campana,hora,temperatura,pressio,volum,oberta}
 Per entrar al mysql:
@@ -93,7 +86,7 @@ $ mysql -u root --password=raspberry -D n2o
 | ...   | ...        | ...                 | ...         | ...     | ...   | ...    |
 ```
 
-* COM CANVIAR LA HORA DEL RASPBERRY (EXEMPLE)
+## Com canviar la hora del Raspberry (exemple)
 
 La hora està en UTC (així evitem problemes de canvi horari)
 Per canvia la data al dia 28 de juliol de 2016 a les 18:40:00, fer:
@@ -110,7 +103,7 @@ sudo ntpd -q-g
 sudo /etc/init.d/ntp start
 ```
 
-* CONFIGURACIÓ WIFI
+## Configuració Wifi Raspberry
 
 Es configura a l'arxiu /etc/network/interfaces:
 
@@ -125,9 +118,10 @@ iface wlan0 inet dhcp
   wpa-psk "#1wifi09icr@"
 ```
 
-* COM CREAR UN FITXER CSV DES DE MYSQL (des de bash)
+## Com crear un fitxer csv fent servir la comanda "mysql"
 
 ```
 echo "SELECT * FROM mesures WHERE id_campana=1;" | mysql -u root --password=raspberry -D n2o > campana1.csv;
 ```
+
 vim:ts=2:sw=2:expandtab:ft=help:norl:

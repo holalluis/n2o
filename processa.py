@@ -11,7 +11,7 @@ def processa(trama):
 		'''
 			exemple per T1 = 'troba("T",1)'
 			Parametres
-			* TPC: <string> "T","P" ò "C" (temperatura, pressió, o pols cabal)
+			* TPC: <string> "T","P","C","E" (temperatura, pressió, o pols cabal)
 			* n:   <int>     1,2,3,4   (número de campana)
 		'''
 		#busca posicions inici i final dins la trama
@@ -24,7 +24,10 @@ def processa(trama):
 			elif TPC=="P":
 				final=trama.find(",C1-") #després de P4 va ,C1-
 			elif TPC=="C":
-				final=trama.find("F") #després de C4 va F
+				final=trama.find(",E1-") #després de C4 va ,E1-
+				final=trama.find("F")
+			elif TPC=="E":
+				final=trama.find("F")    #després de E4 va F
 		else:
 			#manera normal (n=1,2,3)
 			final=trama.find(","+TPC+str(n+1)+"-")
@@ -32,8 +35,8 @@ def processa(trama):
 		#troba el valor analogic (0-1023) dins la trama
 		valor=int(trama[inici:final])
 
-		#si és pols cabal ja estem (val <0,1>)
-		if TPC=="C": return valor
+		#si és pols cabal o estat electrovàlvula ja estem (valen <0,1>)
+		if TPC in ["C","E"]: return valor
 
 		#converteix el valor analogic a graus o bars segons TPC
 		'''
@@ -67,19 +70,23 @@ def processa(trama):
 		return round(conv,2)
 
 	'''Temperatura, Pressió i Cabal'''
-	T1=troba("T",1); P1=troba("P",1); C1=troba("C",1)
-	T2=troba("T",2); P2=troba("P",2); C2=troba("C",2)
-	T3=troba("T",3); P3=troba("P",3); C3=troba("C",3)
-	T4=troba("T",4); P4=troba("P",4); C4=troba("C",4)
+	T1=troba("T",1); P1=troba("P",1); C1=troba("C",1); #E1=troba("E",1)
+	T2=troba("T",2); P2=troba("P",2); C2=troba("C",2); #E2=troba("E",2)
+	T3=troba("T",3); P3=troba("P",3); C3=troba("C",3); #E3=troba("E",3)
+	T4=troba("T",4); P4=troba("P",4); C4=troba("C",4); #E4=troba("E",4)
+
+	E1="1"; E2="0"; E3="0"; E4="0";
 
 	'''stdout'''
 	print("TRAMA "+trama)
 	print("  Temperatura -> T1="+str(T1)+"ºC, T2="+str(T2)+"ºC, T3="+str(T3)+"ºC, T4="+str(T4)+"ºC")
 	print("  Pressió     -> P1="+str(P1)+" bar, P2="+str(P2)+" bar, P3="+str(P3)+" bar, P4="+str(P4)+" bar")
 	print("  Pols cabal  -> C1="+str(C1)+", C2="+str(C2)+", C3="+str(C3)+", C4="+str(C4))
+	print("  E-vàlvula   -> E1="+str(E1)+", E2="+str(E2)+", E3="+str(E3)+", E4="+str(E4))
 
 	'''return objecte json'''
-	return {"T1":T1,"T2":T2,"T3":T3,"T4":T4,"P1":P1,"P2":P2,"P3":P3,"P4":P4,"C1":C1,"C2":C2,"C3":C3,"C4":C4}
+	return {"T1":T1,"T2":T2,"T3":T3,"T4":T4,"P1":P1,"P2":P2,"P3":P3,"P4":P4,"C1":C1,"C2":C2,"C3":C3,"C4":C4,"E1":E1,"E2":E2,"E3":E3,"E4":E4}
 
 '''TEST'''
 #processa("IT1-458,T2-462,T3-458,T4-466,P1-180,P2-182,P3-182,P4-184,C1-0,C2-0,C3-0,C4-0F")
+#processa("IT1-458,T2-462,T3-458,T4-466,P1-180,P2-182,P3-182,P4-184,C1-0,C2-0,C3-0,C4-0,E1-1,E2-0,E3-0,E4-0F")

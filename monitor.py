@@ -6,9 +6,11 @@
 import processa as Pro
 import serial
 import sys
+import time
 #connecta amb l'arduino via serial
 try:
 	ser=serial.Serial('/dev/ttyACM0',9600)
+	#raise RuntimeError
 except:
 	print("CREANT SERIAL VIRTUAL")
 	import virtual
@@ -17,7 +19,7 @@ except:
 print("Port serial: "+ser.port+". open: "+str(ser.isOpen())+" --> Ctrl-C per parar")
 print("\n\n\n\n")
 #linies a esborrar per pantallazo
-linies=4 
+linies=5 
 #crea una trama buida i comença a llegir bytes
 trama=""
 while True:

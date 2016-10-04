@@ -1,8 +1,9 @@
 PENDENT PER FER
 ===============
 
-*Implementar comandes Obrir i Tancar *NEXT*
-*Implementar tamany màxim base de dades (12 mesos?)
-*Afegir arxius web al github
+*ADAPTAR TRAMA ARDUINO PER ENVIAR E1,E2,E3,E4 *NEXT*
+*Implementar comandes Obrir i Tancar 
+*Implementar tamany màxim base de dades (10 mesos)
+*l'usuari ha de poder programar la seqüència i temps entre lectures
 
 vim:ft=help:

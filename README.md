@@ -16,7 +16,7 @@ Idea General (esquema)
 
 
 L'Arduino està contínuament llegint les dades dels sensors i enviant-les al port serial (USB) del Raspberry Pi. Aquest, processa les dades cada X temps, 
-i si l'usuari vol, ho emmagatzema a una base de dades.
+i si l'usuari vol, les emmagatzema a una base de dades.
 
 Programes
 =========
@@ -34,36 +34,40 @@ Programes
 Web
 ===
 
-Per veure les dades i descarregar-les en format CSV s'ha d'accedir a la web dins el raspberry des d'un mòbil o ordinador 
+Per veure les dades i descarregar-les en format CSV s'ha d'accedir a la web dins el Raspberry des d'un mòbil o ordinador 
 que estigui a la mateixa xarxa wifi que el Raspberry. Escriure al navegador:
 
-http://[ip-del-raspberry]/n2o/ (per exemple: http://192.168.102.200/n2o)
+  http://[ip-del-raspberry]/n2o/ (per exemple: http://192.168.102.200/n2o)
 
 (falta imatge)
 
-Per saber la ip ("inet addr"): executar la comanda ifconfig a la consola
+Per saber la ip ("inet addr"): executar la comanda ifconfig a la consola.
 Els fitxers de la web estan a la carpeta web/ i dins el Raspberry han de ser a la carpeta /var/www/n2o.
-Per veure la web des d'un altre ordinador (o el mòbil): 
+Si es fa una modificació a la web, el fitxer "web/desplegaWeb.sh" serveix per copiar 
+els fitxers a la carpeta correcta (necessita permisos d'administrador).
 
 Back-end (arxius de desenvolupament)
 ====================================
 
-1. processa.py : funció que tradueix una trama de bytes de l'Arduino a valors llegibles
-2. registra.py : funció que registra una sola lectura a la base de dades 
-3. virtual.py  : funció que simula un arduino enviant trames
+## Altres arxius Python
+
+processa.py : funció que tradueix una trama de bytes de l'Arduino a valors llegibles
+registra.py : funció que registra una sola lectura a la base de dades 
+virtual.py  : funció que simula un arduino enviant trames
 
 ## Codi Arduino (arxiu arduino/nodegasos.ino)
 
-Es pot modificar el codi des del raspberry utilitzant ino (http://inotool.org). Algunes comandes:
+Es pot modificar el codi Arduino des del mateix Raspberry utilitzant la comanda ino (http://inotool.org). Algunes comandes:
 
 ```
-ino init #crea l'arxiu sketch.ino
+ino init #crea un nou projecte, i l'arxiu sketch.ino
 ino build #compila l'arxiu sketch.ino
-ino upload #carrega a l'arduino l'arxiu compilat
-ino serial #mostra per pantalla el monitor serial de l'arduino
-          #per sortir: ctrl-a ctrl-x
+ino upload #carrega a l'arduino l'arxiu sketch.ino compilat
+ino serial #mostra per pantalla el monitor serial de l'arduino. Per sortir: ctrl-a ctrl-x
 ```
-Aquesta opció és ideal per treballar de forma remota. Important: per arduino mega 2560, cal fer build i upload amb la opcio -b mega2560 (veure documentacio a la web de ino)
+
+Aquesta opció és ideal per treballar de forma remota. 
+Important: per arduino mega 2560, cal fer build i upload amb la opcio -b mega2560 (veure documentacio a la web de ino):
 
 ```
 ino build -b mega2560
@@ -71,8 +75,8 @@ ino build -b mega2560
 
 ## Base de dades MySQL
 
-La base de dades Es diu "n2o" i conté una única taula anomenada "mesures" {id,id_campana,hora,temperatura,pressio,volum,oberta}
-Per entrar al mysql:
+La base de dades es diu "n2o" i conté una única taula anomenada "mesures" {id,id_campana,hora,temperatura,pressio,volum,oberta}
+Per entrar al mysql sense fer servir la web (ús avançat):
 
 ```
 $ mysql -u root --password=raspberry -D n2o
@@ -90,8 +94,8 @@ $ mysql -u root --password=raspberry -D n2o
 
 ## Com canviar la hora del Raspberry (exemple)
 
-La hora està en UTC (així evitem problemes de canvi horari)
-Per canvia la data al dia 28 de juliol de 2016 a les 18:40:00, fer:
+La hora del Raspberry (i per tant, de la base de dades) està en UTC (així evitem problemes de canvi horari)
+Per canviar la data al dia 28 de juliol de 2016 a les 18:40:00, cal executar:
 
 ```
 sudo date --set="2016-07-28 18:40:00"
@@ -107,7 +111,7 @@ sudo /etc/init.d/ntp start
 
 ## Configuració Wifi Raspberry
 
-Es configura a l'arxiu /etc/network/interfaces:
+El wifi del Raspberry es configura a l'arxiu /etc/network/interfaces:
 
 ```
 auto lo

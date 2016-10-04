@@ -50,13 +50,6 @@ Back-end (arxius de desenvolupament)
 Altres arxius
 =============
 
-* CODI ARDUINO
-* FITXERS WEB
-* BASE DE DADES MYSQL
-* COM CANVIAR LA HORA
-* CONFIGURACIÓ WIFI
-* COM CREAR UN CSV
-
 * CODI ARDUINO (arduino/nodeGasos.ino)
 ** es pot modificar el codi des del raspberry:
 *** Utilitzant ino (http://inotool.org):

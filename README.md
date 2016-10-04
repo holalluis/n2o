@@ -21,11 +21,14 @@ i si l'usuari vol, les emmagatzema a la base de dades
 Programes
 =========
 
-1. monitor.py  : mostra contínuament les dades sense registrar-les a la base de dades
+1. monitor.py  : mostra contínuament les dades sense registrar-les a la base de dades. Veure animació:
 ![](https://raw.githubusercontent.com/holalluis/n2o/master/gif/monitor.gif)
 2. manual.py   : permet obrir/tancar les vàlvules. Pe exemple, "o1" obre la vàlvula 1
+
 (falta gif animat)
+
 3. sessio.py   : fa lectures contínuament (cada X temps) i les inserta a la base de dades
+
 (falta gif animat)
 
 Web
@@ -35,6 +38,8 @@ Per veure les dades i descarregar-les en format CSV s'ha d'accedir a la web dins
 que estigui a la mateixa xarxa wifi que el Raspberry. Escriure al navegador:
 
 http://[ip-del-raspberry]/n2o/ (per exemple: http://192.168.102.200/n2o)
+
+(falta imatge)
 
 Per saber la ip ("inet addr"): executar la comanda ifconfig a la consola
 Els fitxers de la web estan a la carpeta web/ i dins el Raspberry han de ser a la carpeta /var/www/n2o.
@@ -46,9 +51,6 @@ Back-end (arxius de desenvolupament)
 1. processa.py : funció que tradueix una trama de bytes de l'Arduino a valors llegibles
 2. registra.py : funció que registra una sola lectura a la base de dades 
 3. virtual.py  : funció que simula un arduino enviant trames
-
-Altres arxius
-=============
 
 ## Codi Arduino (arxiu arduino/nodegasos.ino)
 

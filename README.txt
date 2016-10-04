@@ -28,6 +28,10 @@ Programes
 2. manual.py   : permet obrir/tancar les vàlvules. Pe exemple, "o1" obre la vàlvula 1
 3. sessio.py   : fa lectures contínuament (cada X temps) i les inserta a la base de dades
 
+Monitor
+
+![](https://raw.githubusercontent.com/holalluis/n2o/master/gif/monitor.gif)
+
 Web
 ===
 

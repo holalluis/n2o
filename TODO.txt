@@ -1,7 +1,7 @@
 PENDENT PER FER
 ===============
 
-*ADAPTAR TRAMA ARDUINO PER ENVIAR E1,E2,E3,E4 *NEXT*
+*ADAPTAR TRAMA ARDUINO PER ENVIAR E1,E2,E3,E4 *ARA*
 *Implementar comandes Obrir i Tancar 
 *Implementar tamany màxim base de dades (10 mesos)
 *l'usuari ha de poder programar la seqüència i temps entre lectures

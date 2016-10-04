@@ -15,9 +15,8 @@ Idea General (esquema)
                    +---------+
 
 
-L'Arduino està CONTÍNUAMENT ENVIANT DADES AL PORT SERIAL del Raspberry Pi
-
-El Raspberry Pi processa les dades cada X temps, i si l'usuari vol, les emmagatzema a la base de dades
+L'Arduino està CONTÍNUAMENT ENVIANT DADES AL PORT SERIAL del Raspberry Pi. El Raspberry Pi processa les dades cada X temps, 
+i si l'usuari vol, les emmagatzema a la base de dades
 
 Programes
 =========
@@ -35,7 +34,7 @@ Web
 Per veure les dades i descarregar-les en format CSV s'ha d'accedir a la web dins el raspberry des d'un mòbil o ordinador 
 que estigui a la mateixa xarxa wifi que el Raspberry. Escriure al navegador:
 
-	http://[ip-del-raspberry]/n2o
+http://[ip-del-raspberry]/n2o
 
 Per saber la ip del raspberry es pot executar la comanda "ifconfig"
 La ip serà una cosa semblant a 192.168.102.200
@@ -50,7 +49,7 @@ Back-end (arxius de desenvolupament)
 Altres arxius
 =============
 
-* CODI ARDUINO (arduino/nodeGasos.ino)
+## CODI ARDUINO (arduino/nodeGasos.ino)
 
 Es pot modificar el codi des del raspberry utilitzant ino (http://inotool.org). Algunes comandes:
 

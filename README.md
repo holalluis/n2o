@@ -32,8 +32,8 @@ Programes
 Web
 ===
 
-Per veure les dades i descarregar-les en format CSV s'ha d'accedir a la web dins el raspberry.
-Per fer-ho, cal estar a la mateixa xarxa wifi que el Raspberry i escriure al navegador:
+Per veure les dades i descarregar-les en format CSV s'ha d'accedir a la web dins el raspberry des d'un mòbil o ordinador 
+que estigui a la mateixa xarxa wifi que el Raspberry. Escriure al navegador:
 
 	http://[ip-del-raspberry]/n2o
 
@@ -55,10 +55,10 @@ Altres arxius
 Es pot modificar el codi des del raspberry utilitzant ino (http://inotool.org). Algunes comandes:
 
 ```
-ino init #crea l'arxiu sketch.ino)
-ino build #compila l'arxiu sketch.ino)
-ino upload #carrega a l'arduino l'arxiu compilat)
-ino serial #mostra per pantalla el monitor serial de l'arduino)
+ino init #crea l'arxiu sketch.ino
+ino build #compila l'arxiu sketch.ino
+ino upload #carrega a l'arduino l'arxiu compilat
+ino serial #mostra per pantalla el monitor serial de l'arduino
           #per sortir: ctrl-a ctrl-x
 ```
 Aquesta opció és ideal per treballar de forma remota. Important: per arduino mega 2560, cal fer build i upload amb la opcio -b mega2560 (veure documentacio a la web de ino)
@@ -71,12 +71,13 @@ ino build -b mega2560
 Estan a la carpeta web/ i dins el Raspberry han de ser a la carpeta /var/www/n2o.
 Per veure la web des d'un altre ordinador (o el mòbil): 
 
-		http://[ip-del-raspberry]/n2o/ (per exemple: http://192.168.102.200/n2o)
+http://[ip-del-raspberry]/n2o/ (per exemple: http://192.168.102.200/n2o)
 
-Per saber la ip ("inet addr"): comanda ifconfig
+Per saber la ip ("inet addr"): executar la comanda ifconfig a la consola
 
 * BASE DE DADES MYSQL
-Es diu "n2o" i dins hi ha una sola taula anomenada "mesures" {id,id_campana,hora,temperatura,pressio,volum,oberta}
+
+La base de dades Es diu "n2o" i conté una única taula anomenada "mesures" {id,id_campana,hora,temperatura,pressio,volum,oberta}
 Per entrar al mysql:
 
 ```
@@ -94,14 +95,15 @@ $ mysql -u root --password=raspberry -D n2o
 ```
 
 * COM CANVIAR LA HORA DEL RASPBERRY (EXEMPLE)
-LA HORA ESTÀ EN UTC (així evitem problemes de canvi horari)
+
+La hora està en UTC (així evitem problemes de canvi horari)
 Per canvia la data al dia 28 de juliol de 2016 a les 18:40:00, fer:
 
 ```
 sudo date --set="2016-07-28 18:40:00"
 ```
 
-** Per obtenir la hora d'internet, es pot fer amb la companda ntpd (network time protocol daemon):
+Per obtenir la hora d'internet, es pot fer amb la companda ntpd (network time protocol daemon):
 
 ```
 sudo /etc/init.d/ntp stop
@@ -110,6 +112,7 @@ sudo /etc/init.d/ntp start
 ```
 
 * CONFIGURACIÓ WIFI
+
 Es configura a l'arxiu /etc/network/interfaces:
 
 ```
@@ -128,5 +131,4 @@ iface wlan0 inet dhcp
 ```
 echo "SELECT * FROM mesures WHERE id_campana=1;" | mysql -u root --password=raspberry -D n2o > campana1.csv;
 ```
-
 vim:ts=2:sw=2:expandtab:ft=help:norl:

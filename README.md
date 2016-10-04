@@ -23,12 +23,11 @@ Programes
 =========
 
 1. monitor.py  : mostra contínuament les dades sense registrar-les a la base de dades
-2. manual.py   : permet obrir/tancar les vàlvules. Pe exemple, "o1" obre la vàlvula 1
-3. sessio.py   : fa lectures contínuament (cada X temps) i les inserta a la base de dades
-
-Monitor
-
 ![](https://raw.githubusercontent.com/holalluis/n2o/master/gif/monitor.gif)
+2. manual.py   : permet obrir/tancar les vàlvules. Pe exemple, "o1" obre la vàlvula 1
+(falta gif animat)
+3. sessio.py   : fa lectures contínuament (cada X temps) i les inserta a la base de dades
+(falta gif animat)
 
 Web
 ===
@@ -41,8 +40,9 @@ Per fer-ho, cal estar a la mateixa xarxa wifi que el Raspberry i escriure al nav
 Per saber la ip del raspberry es pot executar la comanda "ifconfig"
 La ip serà una cosa semblant a 192.168.102.200
 
-Back-end
-========
+Back-end (arxius de desenvolupament)
+====================================
+
 1. processa.py : funció que tradueix una trama de bytes de l'Arduino a valors llegibles
 2. registra.py : funció que registra una sola lectura a la base de dades 
 3. virtual.py  : funció que simula un arduino enviant trames

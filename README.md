@@ -15,8 +15,8 @@ Idea General (esquema)
                    +---------+
 
 
-L'Arduino està CONTÍNUAMENT ENVIANT DADES AL PORT SERIAL del Raspberry Pi. El Raspberry Pi processa les dades cada X temps, 
-i si l'usuari vol, les emmagatzema a la base de dades
+L'Arduino està contínuament llegint les dades dels sensors i enviant-les al port serial (USB) del Raspberry Pi. Aquest, processa les dades cada X temps, 
+i si l'usuari vol, ho emmagatzema a una base de dades.
 
 Programes
 =========

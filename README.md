@@ -1,9 +1,13 @@
 # N2O : Sistema de Sensors + Arduino + Raspberry + MySQL
 
-Última modificació: 4 octubre 2016, Lluís Bosch (lbosch@icra.cat)
+Última modificació: 5 octubre 2016, Lluís Bosch (lbosch@icra.cat)
 
 Idea General (esquema)
 ======================
+
+L'Arduino està contínuament llegint les dades dels sensors i enviant-les al port serial (USB) del Raspberry Pi. Aquest, processa les dades cada X temps, 
+i si l'usuari vol, les emmagatzema a una base de dades.
+
 
      +---------+   +---------+
      | Sensors |-->|         |
@@ -14,9 +18,6 @@ Idea General (esquema)
     +----------+   |         |
                    +---------+
 
-
-L'Arduino està contínuament llegint les dades dels sensors i enviant-les al port serial (USB) del Raspberry Pi. Aquest, processa les dades cada X temps, 
-i si l'usuari vol, les emmagatzema a una base de dades.
 
 Programes
 =========

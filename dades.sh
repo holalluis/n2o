@@ -1,6 +1,5 @@
 #!/bin/bash
-
+read -p "Usuari: " user
+read -p "Password: " pass
 read -p "Nº campana {1,2,3,4}: " campana
-
-echo "SELECT * FROM mesures WHERE id_campana=$campana;" | mysql -u root --password=raspberry -D n2o
-
+echo "SELECT * FROM mesures WHERE id_campana=$campana;" | mysql -u $user --password=$pass -D n2o

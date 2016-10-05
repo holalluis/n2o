@@ -1,13 +1,13 @@
 #!/bin/bash
 
-clear;echo -e "S I S T E M A    N 2 O \n"
+clear
 
-echo "[+] Tria una opció ('ctrl-c' per sortir):"
+echo -e "S I S T E M A   N 2 O\n"
 
-select op in $(ls|grep -e ".py" -e "dades"|grep -Ev 'processa|registra|virtual')
+echo "[+] Tria una opció (ctrl-c per sortir):"
 
-	do echo -e "\n[+] Iniciant programa $op...\n"
-
+select op in $(ls|grep -E '.py|dades'|grep -Ev 'processa|registra|virtual')
+do
+	echo -e "\n[+] Iniciant programa $op...\n"
 	./$op
-
 done

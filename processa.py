@@ -13,6 +13,9 @@ def processa(trama):
 			Parametres
 			* TPC: <string> "T","P","C","E" (temperatura, pressió, o pols cabal)
 			* n:   <int>     1,2,3,4   (número de campana)
+
+			exemple de trama
+			IT1-473,T2-477,T3-472,T4-466,P1-180,P2-181,P3-181,P4-182,E1-0,E2-0,E3-0,E4-0,C1-1,C2-1,C3-1,C4-1F
 		'''
 		#busca posicions inici i final dins la trama
 		inici=trama.find(TPC+str(n)+"-")+3
@@ -22,14 +25,11 @@ def processa(trama):
 			if TPC=="T":
 				final=trama.find(",P1-") #després de T4 va ,P1-
 			elif TPC=="P":
-				final=trama.find(",C1-") #després de P4 va ,C1-
-			elif TPC=="C":
-				try:
-					final=trama.find(",E1-") #després de C4 va ,E1-
-				except:
-					final=trama.find("F")
+				final=trama.find(",E1-") #després de P4 va ,E1-
 			elif TPC=="E":
-				final=trama.find("F")    #després de E4 va F
+				final=trama.find(",C1-") #després de E4 va ,C1-
+			elif TPC=="C":
+				final=trama.find("F")
 		else:
 			#manera normal (n=1,2,3)
 			final=trama.find(","+TPC+str(n+1)+"-")
@@ -72,15 +72,13 @@ def processa(trama):
 		return round(conv,2)
 
 	'''Temperatura, Pressió i Cabal'''
-	T1=troba("T",1); P1=troba("P",1); C1=troba("C",1); #E1=troba("E",1)
-	T2=troba("T",2); P2=troba("P",2); C2=troba("C",2); #E2=troba("E",2)
-	T3=troba("T",3); P3=troba("P",3); C3=troba("C",3); #E3=troba("E",3)
-	T4=troba("T",4); P4=troba("P",4); C4=troba("C",4); #E4=troba("E",4)
-
-	E1="1"; E2="0"; E3="0"; E4="0";
+	T1=troba("T",1); P1=troba("P",1); C1=troba("C",1); E1=troba("E",1)
+	T2=troba("T",2); P2=troba("P",2); C2=troba("C",2); E2=troba("E",2)
+	T3=troba("T",3); P3=troba("P",3); C3=troba("C",3); E3=troba("E",3)
+	T4=troba("T",4); P4=troba("P",4); C4=troba("C",4); E4=troba("E",4)
 
 	'''stdout'''
-	print("TRAMA "+trama)
+	#print("TRAMA "+trama)
 	print("  Temperatura -> T1="+str(T1)+"ºC, T2="+str(T2)+"ºC, T3="+str(T3)+"ºC, T4="+str(T4)+"ºC")
 	print("  Pressió     -> P1="+str(P1)+" bar, P2="+str(P2)+" bar, P3="+str(P3)+" bar, P4="+str(P4)+" bar")
 	print("  Pols cabal  -> C1="+str(C1)+", C2="+str(C2)+", C3="+str(C3)+", C4="+str(C4))

@@ -19,7 +19,7 @@ except:
 print("Port serial: "+ser.port+". open: "+str(ser.isOpen())+" --> Ctrl-C per parar")
 print("\n\n\n\n")
 #linies a esborrar per pantallazo
-linies=5 
+linies=4 
 #crea una trama buida i comença a llegir bytes
 trama=""
 while True:

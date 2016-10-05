@@ -85,34 +85,34 @@ void comprovaCabalimetres()
   //Cabalimentre 1
   if((digitalRead(potaCabalimetre1) == LOW) && (prevCont1 == LOW))
   {
-    cont1 = !cont1; prevCont1 = HIGH;
+	cont1 = !cont1; prevCont1 = HIGH;
   }
   else if((digitalRead(potaCabalimetre1) == HIGH) && (prevCont1 == HIGH))
-    prevCont1 = LOW;
+	prevCont1 = LOW;
 
   //Cabalimentre 2
   if((digitalRead(potaCabalimetre2) == LOW) && (prevCont2 == LOW))
   {
-    cont2 = !cont2; prevCont2 = HIGH;
+	cont2 = !cont2; prevCont2 = HIGH;
   }
   else if((digitalRead(potaCabalimetre2) == HIGH) && (prevCont2 == HIGH))
-    prevCont2 = LOW;
-    
+	prevCont2 = LOW;
+	
   //Cabalimentre 3
   if((digitalRead(potaCabalimetre3) == LOW) && (prevCont3 == LOW))
   {
-    cont3 = !cont3; prevCont3 = HIGH;
+	cont3 = !cont3; prevCont3 = HIGH;
   }
   else if((digitalRead(potaCabalimetre3) == HIGH) && (prevCont3 == HIGH))
-    prevCont3 = LOW;
+	prevCont3 = LOW;
 
   //Cabalimentre 4
   if((digitalRead(potaCabalimetre4) == LOW) && (prevCont4 == LOW))
   {
-    cont4 = !cont4; prevCont4 = HIGH;
+	cont4 = !cont4; prevCont4 = HIGH;
   }
   else if((digitalRead(potaCabalimetre4) == HIGH) && (prevCont4 == HIGH))
-    prevCont4 = LOW;
+	prevCont4 = LOW;
 
   //Cabalimentre 1
   if(cont1 == LOW) Serial.print(",C1-1");
@@ -121,7 +121,7 @@ void comprovaCabalimetres()
   //Cabalimentre 2
   if(cont2 == LOW) Serial.print(",C2-1");
   else Serial.print(",C2-0");
-    
+	
   //Cabalimentre 3
   if(cont3 == LOW) Serial.print(",C3-1");
   else Serial.print(",C3-0");
@@ -140,12 +140,12 @@ void comprovaElectrovalvules()
 	//si comanda no val ni O ni T, acaba
 	if(comanda!='O' && comanda!='T') return;
 
-       if(comanda=='O' && quina=='1'){digitalWrite(potaElectrovalvula1,HIGH);estatValvula1=HIGH;}
-	else if(comanda=='T' && quina=='1'){digitalWrite(potaElectrovalvula1, LOW);estatValvula1=LOW ;}
-	else if(comanda=='O' && quina=='2'){digitalWrite(potaElectrovalvula2,HIGH);estatValvula2=HIGH;}
-	else if(comanda=='T' && quina=='2'){digitalWrite(potaElectrovalvula2, LOW);estatValvula2=LOW ;}
-	else if(comanda=='O' && quina=='3'){digitalWrite(potaElectrovalvula3,HIGH);estatValvula3=HIGH;}
-	else if(comanda=='T' && quina=='3'){digitalWrite(potaElectrovalvula3, LOW);estatValvula3=LOW ;}
-	else if(comanda=='O' && quina=='4'){digitalWrite(potaElectrovalvula4,HIGH);estatValvula4=HIGH;}
-	else if(comanda=='T' && quina=='4'){digitalWrite(potaElectrovalvula4, LOW);estatValvula4=LOW ;}
+	     if(comanda=='O' && quina=='1'){digitalWrite(potaElectrovalvula1,LOW );estatValvula1=1;}
+	else if(comanda=='T' && quina=='1'){digitalWrite(potaElectrovalvula1,HIGH);estatValvula1=0;}
+	else if(comanda=='O' && quina=='2'){digitalWrite(potaElectrovalvula2,LOW );estatValvula2=1;}
+	else if(comanda=='T' && quina=='2'){digitalWrite(potaElectrovalvula2,HIGH);estatValvula2=0;}
+	else if(comanda=='O' && quina=='3'){digitalWrite(potaElectrovalvula3,LOW );estatValvula3=1;}
+	else if(comanda=='T' && quina=='3'){digitalWrite(potaElectrovalvula3,HIGH);estatValvula3=0;}
+	else if(comanda=='O' && quina=='4'){digitalWrite(potaElectrovalvula4,LOW );estatValvula4=1;}
+	else if(comanda=='T' && quina=='4'){digitalWrite(potaElectrovalvula4,HIGH);estatValvula4=0;}
 }

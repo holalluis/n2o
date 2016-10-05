@@ -21,26 +21,27 @@ def envia(comanda):
 	ser.flushOutput()
 	ser.write(comanda+'\n')
 	trama=""
+	ser.flushInput()
 	while True:
 		c=ser.read()
 		trama+=c
 		if c is "F":
 			try: 
 				d=Pro.processa(trama)
-				for i in range(5): sys.stdout.write("\033[F\033[K")
+				for i in range(4): sys.stdout.write("\033[F\033[K")
 				break
-			except: 
-				print "error"
+			except: pass
 			trama=""
+			ser.flushInput()
 
 	EV=comanda[1] #nº electrovàlvula
 
 	#processa les comandes i fes crides recursives per forçar estat desitjat
 	if comanda[0] is 'O':
-		if d['E'+str(EV)] is '1': print "FET!"; return
+		if d['E'+EV] is 1: print "FET!"; return
 		else: time.sleep(1); envia(comanda)
 	elif comanda[0] is 'T':
-		if d['E'+str(EV)] is '0': print "FET!"; return
+		if d['E'+EV] is 0: print "FET!"; return
 		else: time.sleep(1); envia(comanda)
 
 print("Escriu comanda '[ot][1234]', '?' per ajuda, o 'q' per sortir\n")
@@ -61,6 +62,7 @@ while True:
 	co=comanda[0] #comanda
 	ev=comanda[1] #electrovalvula
 
+	#al codi .ino obrir i tancar estan girats!
 	if co is 'o':
 		print "Obrint vàlvula %s..." % ev
 		envia('O'+ev)

@@ -1,12 +1,8 @@
 PENDENT PER FER
 ===============
 
-*Compilar arxiu .ino felix *NEXT*
-
-*ADAPTAR TRAMA ARDUINO PER ENVIAR E1,E2,E3,E4*
-*Implementar comandes Obrir i Tancar 
+*Afegir un fitxer .sql a la carpeta web/ amb l'estructura de la base de dades
 *Implementar tamany màxim base de dades (10 mesos)
 *l'usuari ha de poder programar la seqüència i temps entre lectures
-*Afegir un fitxer .sql a la carpeta web/ amb l'estructura de la base de dades
 
 vim:ft=help:

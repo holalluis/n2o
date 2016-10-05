@@ -76,8 +76,9 @@ while True:
 	   print("Dades no insertades")
     #esperem X temps
     time.sleep(float(tempsEspera))
-    #flush input! IMPORTANTISSIM
-    ser.flushInput()
     #neteja pantalla
     os.system('clear')
+    print("Adquirint dades cada %s segons" %tempsEspera)
+	#flush input! IMPORTANTISSIM
+    ser.flushInput()
 

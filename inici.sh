@@ -6,7 +6,7 @@ echo -e "S I S T E M A   N 2 O\n"
 
 echo "[+] Tria una opció (ctrl-c per sortir):"
 
-select op in $(ls|grep -E '.py|dades'|grep -Ev 'processa|registra|virtual')
+select op in $(ls|grep -E '.py|veureDades'|grep -Ev 'processa|registra|virtual')
 do
 	echo -e "\n[+] Iniciant programa $op...\n"
 	./$op

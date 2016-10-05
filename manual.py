@@ -44,7 +44,8 @@ def envia(comanda):
 		if d['E'+EV] is 0: print "FET!"; return
 		else: time.sleep(1); envia(comanda)
 
-print("Escriu comanda '[ot][1234]', '?' per ajuda, o 'q' per sortir\n")
+print "Obrir i tancar les electrovàlvules de forma manual:"
+print "Escriu comanda '[ot][1234]', '?' per ajuda, o 'q' per sortir\n"
 while True:
 	print "manual >>",
 	comanda = raw_input()

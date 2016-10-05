@@ -4,7 +4,7 @@
 '''
 
 class Serial:
-        Trama = "IT1-300,T2-350,T3-375,T4-450,P1-180,P2-200,P3-400,P4-700,E1-1,E2-0,E3-0,E4-0,C1-0,C2-0,C3-0,C4-0F" #no canvia mai
+	Trama = "IT1-300,T2-350,T3-375,T4-450,P1-180,P2-200,P3-400,P4-700,E1-1,E2-0,E3-0,E4-0,C1-0,C2-0,C3-0,C4-0F" #no canvia mai
 	trama = Trama
 	port ="VIRTUAL"
 	def read(self):
@@ -17,7 +17,7 @@ class Serial:
 		return c
 	def flush(self): pass
 	def flushInput(self): pass
-        def flushOutput(self): pass
+  def flushOutput(self): pass
 	def isOpen(self): return True
 	def write(self,ordre): pass #print "Has enviat %s" % ordre
 

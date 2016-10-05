@@ -22,14 +22,29 @@ i si l'usuari vol, les emmagatzema a una base de dades.
 Programes
 =========
 
-- monitor.py  : mostra contínuament les dades sense registrar-les a la base de dades. Veure animació:
-![](https://raw.githubusercontent.com/holalluis/n2o/master/gif/monitor.gif)
+- inici.sh    : menú principal on es poden executar la resta de programes.
+![](https://raw.githubusercontent.com/holalluis/n2o/master/gif/inici.gif)
+
+- info.py     : Instruccions per obrir la web i crèdits.
+
+(falta gif animat)
 
 - manual.py   : permet obrir/tancar les vàlvules. Per exemple, la comanda "o1" obre la vàlvula 1.
 
 (falta gif animat)
 
-- sessio.py   : fa lectures contínuament (cada X temps) i les inserta a la base de dades.
+- monitor.py  : mostra contínuament les dades sense registrar-les a la base de dades. Veure animació:
+![](https://raw.githubusercontent.com/holalluis/n2o/master/gif/monitor.gif)
+
+- sequencia.py: Permet programar ordre obertura vàlvules i registrar a la base de dades.
+
+(falta gif animat)
+
+- sessio.py   : fa lectures contínuament (cada X temps) i les inserta a la base de dades, sense obrir vàlvules.
+
+(falta gif animat)
+
+- veureDades.sh : mostra les 30 últimes dades insertades.
 
 (falta gif animat)
 

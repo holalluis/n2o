@@ -16,7 +16,6 @@ def registra(dades):
     t.start()
 
 def worker(dades):
-	
     #mostra la hora
     print "\n", time.ctime(), "UTC\n"
 
@@ -30,19 +29,19 @@ def worker(dades):
     sys.stdout.write("\033[F\033[F")
 
     #script php que afegeix mesures
-    url="http://localhost/n2o/novaMesura.php?"
+    url="http://localhost/n2o/novaMesura.php"
 
-	#campanes
-    res=urllib2.urlopen(url+"campana=1&t="+str(T1)+"&p="+str(P1)+"&v="+str(V1)+"&e="+str(E1))
+    #campanes
+    res=urllib2.urlopen(url+"?campana=1&t="+str(T1)+"&p="+str(P1)+"&v="+str(V1)+"&e="+str(E1))
     print res.read()
     sys.stdout.write("\033[F\033[F")
-    res=urllib2.urlopen(url+"campana=2&t="+str(T2)+"&p="+str(P2)+"&v="+str(V2)+"&e="+str(E2))
+    res=urllib2.urlopen(url+"?campana=2&t="+str(T2)+"&p="+str(P2)+"&v="+str(V2)+"&e="+str(E2))
     print res.read()
     sys.stdout.write("\033[F\033[F")
-    res=urllib2.urlopen(url+"campana=3&t="+str(T3)+"&p="+str(P3)+"&v="+str(V3)+"&e="+str(E3))
+    res=urllib2.urlopen(url+"?campana=3&t="+str(T3)+"&p="+str(P3)+"&v="+str(V3)+"&e="+str(E3))
     print res.read()
     sys.stdout.write("\033[F\033[F")
-    res=urllib2.urlopen(url+"campana=4&t="+str(T4)+"&p="+str(P4)+"&v="+str(V4)+"&e="+str(E4))
+    res=urllib2.urlopen(url+"?campana=4&t="+str(T4)+"&p="+str(P4)+"&v="+str(V4)+"&e="+str(E4))
     print res.read()
 
     print("")

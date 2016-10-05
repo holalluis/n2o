@@ -1,0 +1,9 @@
+
+[mysql]
+user="root"
+pass="raspberry"
+url="http://localhost/n2o/novaMesura.php?"
+
+[serial]
+port="/dev/ttyACM0"
+baudrate=9600

@@ -1,8 +1,8 @@
 PENDENT PER FER
 ===============
 
-*Afegir un fitxer .sql a la carpeta web/ amb l'estructura de la base de dades
-*Implementar tamany màxim base de dades (10 mesos)
+*testejar tamany màxim base de dades (10 mesos)
+
 *l'usuari ha de poder programar la seqüència i temps entre lectures
 
 vim:ft=help:

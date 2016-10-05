@@ -69,10 +69,10 @@ ino serial #mostra per pantalla el monitor serial de l'arduino. Per sortir: ctrl
 ```
 
 Aquesta opció és ideal per treballar de forma remota. 
-Important: per arduino mega 2560, cal fer build i upload amb la opcio -b mega2560 (veure documentacio a la web de ino):
+Important: per arduino mega 2560, cal fer build i upload amb la opcio -m mega2560 (veure documentacio a la web de ino):
 
 ```
-ino build -b mega2560
+ino build -m mega2560
 ```
 
 ## Base de dades MySQL

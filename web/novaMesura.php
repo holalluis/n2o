@@ -16,5 +16,10 @@ echo "Registrant lectura (c=$campana,t=$t,p=$p,v=$v,e=$e)... ";
 $sql ="INSERT INTO mesures (id_campana,hora,temperatura,pressio,volum,oberta) ";
 $sql.="VALUES ($campana,CURRENT_TIMESTAMP,$t,$p,$v,$e)";
 mysql_query($sql) or exit('error');
+
+//esborra dades més antigues de 10 mesos
+$sql="DELETE FROM mesures WHERE hora < (NOW() - INTERVAL 10 MINUTE)";
+mysql_query($sql) or exit('error');
+
 echo "Ok!";
 ?>

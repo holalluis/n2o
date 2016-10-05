@@ -103,7 +103,7 @@ Per canviar la data al dia 28 de juliol de 2016 a les 18:40:00, cal executar:
 sudo date --set="2016-07-28 18:40:00"
 ```
 
-Per obtenir la hora d'internet, es pot fer amb la companda ntpd (network time protocol daemon):
+Per obtenir la hora d'internet, es pot fer amb la comanda ntpd (network time protocol daemon):
 
 ```
 sudo /etc/init.d/ntp stop

@@ -24,8 +24,10 @@ def processa(trama):
 			elif TPC=="P":
 				final=trama.find(",C1-") #després de P4 va ,C1-
 			elif TPC=="C":
-				final=trama.find(",E1-") #després de C4 va ,E1-
-				final=trama.find("F")
+				try:
+					final=trama.find(",E1-") #després de C4 va ,E1-
+				except:
+					final=trama.find("F")
 			elif TPC=="E":
 				final=trama.find("F")    #després de E4 va F
 		else:
@@ -90,3 +92,4 @@ def processa(trama):
 '''TEST'''
 #processa("IT1-458,T2-462,T3-458,T4-466,P1-180,P2-182,P3-182,P4-184,C1-0,C2-0,C3-0,C4-0F")
 #processa("IT1-458,T2-462,T3-458,T4-466,P1-180,P2-182,P3-182,P4-184,C1-0,C2-0,C3-0,C4-0,E1-1,E2-0,E3-0,E4-0F")
+#processa("IT1-300,T2-350,T3-375,T4-450,P1-180,P2-200,P3-400,P4-700,C1-0,C2-0,C3-0,C4-0,E1-1,E2-0,E3-0,E4-0F")

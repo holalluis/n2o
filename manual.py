@@ -6,51 +6,64 @@
 import serial
 import sys
 import time
+import processa as Pro
+
 try:
 	ser=serial.Serial('/dev/ttyACM0',9600)
-	ser.timeout=1
-	ser.flushOutput()
 except:
 	print("CREANT SERIAL VIRTUAL")
 	import virtual
 	ser=virtual.Serial()
 print("Port serial: "+ser.port+". open: "+str(ser.isOpen())+" --> Ctrl-C per parar\n")
 
+'''ENVIA UNA COMANDA (format: 2 caràcters: [ot][1234])'''
 def envia(comanda):
-	print "Enviant '"+comanda+"'...",
-	ser.write(comanda+'\n\r\n')
-	time.sleep(1)
 	ser.flushOutput()
-	print "Fet"
+	ser.write(comanda+'\n')
+	trama=""
+	while True:
+		c=ser.read()
+		trama+=c
+		if c is "F":
+			try: 
+				d=Pro.processa(trama)
+				for i in range(5): sys.stdout.write("\033[F\033[K")
+				break
+			except: 
+				print "error"
+			trama=""
 
-envia('T1'); 
-sys.exit()
+	EV=comanda[1] #nº electrovàlvula
 
-'''
-print("Escriu comanda '[o,t][1,2,3,4,a]', o 'q' per sortir")
+	#processa les comandes i fes crides recursives per forçar estat desitjat
+	if comanda[0] is 'O':
+		if d['E'+str(EV)] is '1': print "FET!"; return
+		else: time.sleep(1); envia(comanda)
+	elif comanda[0] is 'T':
+		if d['E'+str(EV)] is '0': print "FET!"; return
+		else: time.sleep(1); envia(comanda)
+
+print("Escriu comanda '[ot][1234]', '?' per ajuda, o 'q' per sortir\n")
 while True:
-	#print "n2o >>",
+	print "manual >>",
 	comanda = raw_input()
 
-	if comanda in ["q","exit","quit"]:
-		sys.exit()
+	#help
+	if comanda is '?': 
+		print "Exemple: la comanda 'o1' obre la vàlvula 1"
+		print "Exemple: la comanda 't2' tanca la vàlvula 2"
+		continue
 
-	if (comanda[0] not in ['o','t']) or (comanda[1] not in ['1','2','3','4','a']):
-	#	print "Comanda desconeguda";continue
+	#comprova errors
+	if comanda is "": continue
+	if comanda in ["q","exit","quit"]: sys.exit()
+	if (comanda[0] not in ['o','t']) or (comanda[1] not in ['1','2','3','4']): print "Comanda desconeguda";continue
+	co=comanda[0] #comanda
+	ev=comanda[1] #electrovalvula
 
-	if comanda[1] is 'a':
-		if comanda[0] is 'o':
-	#		print "Obrint TOTES les vàlvules"
-			ser.write('O1'); ser.write('O2'); ser.write('O2'); ser.write('O4')
-		elif comanda[0] is 't':
-	#		print "Tancant TOTES les vàlvules"
-			ser.write('T1'); ser.write('T2'); ser.write('T2'); ser.write('T4')
-	else:
-		if comanda[0] is 'o':
-	#		print "Obrint vàlvula %s" % comanda[1]
-			ser.write('O'+str(comanda[1]))
-		elif comanda[0] is 't':
-	#		print "Tancant vàlvula %s" % comanda[1]
-			ser.write('T'+str(comanda[1]))
-
-'''
+	if co is 'o':
+		print "Obrint vàlvula %s..." % ev
+		envia('O'+ev)
+	elif co is 't':
+		print "Tancant vàlvula %s..." % ev
+		envia('T'+ev)

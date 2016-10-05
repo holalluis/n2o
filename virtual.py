@@ -18,7 +18,7 @@ class Serial:
 	def flush(self): pass
 	def flushInput(self): pass
 	def isOpen(self): return True
-	def write(self,ordre): print "Has enviat %s" % ordre
+	def write(self,ordre): pass #print "Has enviat %s" % ordre
 
 #test
 '''

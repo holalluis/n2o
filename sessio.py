@@ -13,11 +13,11 @@ import os
 
 #Arguments
 if len(sys.argv)!=2:
-	print "Temps no especificat. Sintaxi: python "+sys.argv[0]+" segons"
-	#print 'Number of arguments:', len(sys.argv), 'arguments.'
-	sys.exit()
+	print "Introdueix interval de temps (segons): ",
+	tempsEspera=raw_input()
+else:
+	tempsEspera=sys.argv[1]
 
-tempsEspera=sys.argv[1]
 os.system('clear')
 print("Adquirint dades cada %s segons" %tempsEspera)
 

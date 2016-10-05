@@ -13,42 +13,44 @@ import os
 
 #Arguments
 if len(sys.argv)!=2:
-	print "Introdueix interval de temps (segons): ",
-	tempsEspera=raw_input()
+    print "Introdueix interval de temps (segons): ",
+    tempsEspera=raw_input()
 else:
-	tempsEspera=sys.argv[1]
+    tempsEspera=sys.argv[1]
 
-#transforma a enter
+#transforma string a integer
 tempsEspera=int(tempsEspera)
 
-#comprova tempsEspera
-if(tempsEspera<0): raise RuntimeError("temps espera negatiu")
+#comprova si és negatiu
+if(tempsEspera<0): 
+    raise RuntimeError("Temps d'espera negatiu")
 
+#Comencem
 os.system('clear')
 print("Registrant dades cada %s segons" %tempsEspera)
 
-#connecta amb l'arduino via serial
+#connecta amb l'arduino, sinó, simula'l
 try:
-	ser=serial.Serial('/dev/ttyACM0',9600)
+    ser=serial.Serial('/dev/ttyACM0',9600)
 except:
-	print("CREANT SERIAL VIRTUAL")
-	import virtual
-	ser=virtual.Serial()
-
-print("Port serial: "+ser.port+". open: "+str(ser.isOpen())+" --> Ctrl-C per parar\n\n")
+    print("CREANT SERIAL VIRTUAL")
+    import virtual
+    ser=virtual.Serial()
 
 '''
-    Volum inicial de les 4 campanes (L) = 0
-    Poso -10 pq el 1r cop que comprovem el pols sumarem 10 i quedarà igual a zero
+Volum inicial de les 4 campanes (L) = 0
+Poso -10 pq el 1r cop que comprovem el pols sumarem 10 i quedarà igual a zero
 '''
 V1=-10;V2=-10;V3=-10;V4=-10
 '''
-    Estat del pols inicial: posem un valor diferent a 0 ò 1
-    Com funciona el pols: varia el bit Cn quan s'envia el pols (on n={1,2,3,4})
-    0000000011111111111111111111000000000000000000111111111...
-            ^pols 1             ^pols2            ^pols3
+Estat del pols inicial: posem un valor diferent a 0 ò 1
+Com funciona el pols: varia el bit Cn quan s'envia el pols (on n={1,2,3,4})
+0000000011111111111111111111000000000000000000111111111...
+        ^pols 1             ^pols2            ^pols3
 '''
 C1=2;C2=2;C3=2;C4=2
+
+print("Port serial: "+ser.port+". open: "+str(ser.isOpen())+" --> Ctrl-C per parar\n\n")
 
 #comença bucle de lectura
 trama=""
@@ -57,6 +59,8 @@ lectures=0 #nombre de lectures fetes mentre esperes (1 segon)
 while True:
 
     #ves comptant el volum mentre esperes
+    #truc: fem aquest bucle "tempsEspera" vegades, i cada vegada dura 1 segon
+    #de manera que durarà "tempsEspera" segons, i de mentres anirem comptant el volum
     while True:
         c=ser.read()
         trama+=c
@@ -87,11 +91,13 @@ while True:
             try: Reg.registra(d)
             except: print("Error: Dades no registrades")
 
+        #mostra el volum que anem comptant
         if lectures>0:
             for i in range(5): sys.stdout.write("\033[F\033[K")
             print "\nComptant Volum (L): "+str([V1,V2,V3,V4])
             sys.stdout.write("\033[F")
 
+        #fi volta: sumem 1 lectura i esperem 1 segon
         lectures+=1
         time.sleep(1)
         if lectures > tempsEspera: break

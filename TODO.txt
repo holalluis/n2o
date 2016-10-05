@@ -1,8 +1,7 @@
 PENDENT PER FER
 ===============
 
-*testejar tamany màxim base de dades (10 mesos)
-
+ARA *mentre es registren dades el sistema ha d'anar comptant el volum
 *l'usuari ha de poder programar la seqüència i temps entre lectures
 
 vim:ft=help:

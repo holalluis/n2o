@@ -18,7 +18,7 @@ $sql.="VALUES ($campana,CURRENT_TIMESTAMP,$t,$p,$v,$e)";
 mysql_query($sql) or exit('error');
 
 //esborra dades més antigues de 10 mesos
-$sql="DELETE FROM mesures WHERE hora < (NOW() - INTERVAL 10 MINUTE)";
+$sql="DELETE FROM mesures WHERE hora < (NOW() - INTERVAL 10 MONTH)";
 mysql_query($sql) or exit('error');
 
 echo "Ok!";

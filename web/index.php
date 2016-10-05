@@ -59,6 +59,8 @@
 	</script>
 </head><body><center><!--titol--><h1 onclick=window.location='index.php'>Historial N<sub>2</sub>O</h1>
 
+<h4>Nota: el sistema esborra automàticament dades més antigues de 10 mesos</h4>
+
 <!--tria campana-->
 <div id=seleccionaCampana>
 Veure:

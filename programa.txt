@@ -1,0 +1,14 @@
+
+# Programa de prova
+
+inici
+
+	o1
+	espera 300
+	t1
+
+	o2
+	espera 300
+	t1
+
+final

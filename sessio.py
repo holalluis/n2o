@@ -25,7 +25,7 @@ tempsEspera=int(tempsEspera)
 if(tempsEspera<0): raise RuntimeError("temps espera negatiu")
 
 os.system('clear')
-print("Adquirint dades cada %s segons" %tempsEspera)
+print("Registrant dades cada %s segons" %tempsEspera)
 
 #connecta amb l'arduino via serial
 try:
@@ -53,6 +53,7 @@ C1=2;C2=2;C3=2;C4=2
 #comença bucle de lectura
 trama=""
 lectures=0 #nombre de lectures fetes mentre esperes (1 segon)
+
 while True:
 
     #ves comptant el volum mentre esperes
@@ -62,10 +63,8 @@ while True:
         if c is "F":
             try: 
                 d=Pro.processa(trama) #saltarà si la trama és incorrecta
-                for i in range(4): sys.stdout.write("\033[F\033[K")
                 trama=""
             except: 
-                print trama
                 trama=""
                 ser.flushInput()
                 continue
@@ -83,13 +82,15 @@ while True:
         #afegeix el volum a l'objecte "d"
         d['V1']=V1;d['V2']=V2;d['V3']=V3;d['V4']=V4
 
-        sys.stdout.write("\033[F\033[K")
-        print "Volum (L): "+str([V1,V2,V3,V4])
-
         #registra a la base de dades si el comptador està a zero
         if lectures is 0:
             try: Reg.registra(d)
             except: print("Error: Dades no registrades")
+
+        if lectures>0:
+            for i in range(5): sys.stdout.write("\033[F\033[K")
+            print "\nComptant Volum (L): "+str([V1,V2,V3,V4])
+            sys.stdout.write("\033[F")
 
         lectures+=1
         time.sleep(1)
@@ -101,7 +102,7 @@ while True:
     lectures=0
     #neteja pantalla
     os.system('clear')
-    print("Adquirint dades cada %s segons" %tempsEspera)
+    print("Registrant dades cada %s segons\n" %tempsEspera)
     #flush input! IMPORTANTISSIM
     ser.flushInput()
 

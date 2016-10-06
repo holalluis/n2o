@@ -26,7 +26,7 @@ Programes
 ![](https://raw.githubusercontent.com/holalluis/n2o/master/gif/inici.gif)
 - info.py     : Instruccions per obrir la web i crèdits.
 - manual.py   : Permet obrir/tancar manualment les vàlvules. Per exemple, la comanda "o1" obre la vàlvula 1.
-- monitor.py  : Mostra de forma contínua l'estat del sistema, sense registrar les dades a la base de dades. Veure animació:
+- monitor.py  : Mostra de forma contínua l'estat del sistema, sense registrar les dades a la base de dades:
 ![](https://raw.githubusercontent.com/holalluis/n2o/master/gif/monitor.gif)
 - sequencia.py: Permet programar l'ordre d'obertura i tancament de vàlvules i registrar les dades a la base de dades.
 Exemple d'arxiu "sequencia.txt":
@@ -45,9 +45,8 @@ E5
 T2
 ```
 
-- sessio.py   : Fa lectures contínuament (cada X temps) i les inserta a la base de dades, sense obrir vàlvules.
+- sessio.py   : Fa lectures contínuament (cada X temps) i les inserta a la base de dades, sense obrir ni tancar vàlvules.
 - veureDades.sh : mostra les 30 últimes dades insertades d'una campana.
-- sequencia.py  : executa el programa creat per l'usuari a l'arxiu "sequencia.txt"
 
 Web
 ===
@@ -74,7 +73,7 @@ Back-end (arxius de desenvolupament)
 - virtual.py  : funció que simula un arduino enviant trames.
 - envia.py    : funció que envia una comanda (obrir/tancar vàlvula) a l'arduino.
 
-## Codi Arduino (arxiu arduino/nodegasos.ino)
+## Codi Arduino (arxiu arduino/codi/src/sketch.ino)
 
 Es pot modificar el codi Arduino des del mateix Raspberry utilitzant la comanda ino (http://inotool.org). Algunes comandes:
 
@@ -95,7 +94,7 @@ ino build -m mega2560
 ## Base de dades MySQL
 
 La base de dades es diu "n2o" i conté una única taula anomenada "mesures". 
-Per entrar al mysql sense fer servir la web (ús avançat):
+Per veure les dades registrades sense fer servir la web (ús avançat):
 
 ```
 $ mysql -u root --password=raspberry -D n2o

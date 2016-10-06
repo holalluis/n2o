@@ -94,7 +94,7 @@ ino build -m mega2560
 
 ## Base de dades MySQL
 
-La base de dades es diu "n2o" i conté una única taula anomenada "mesures" {id,id_campana,hora,temperatura,pressio,volum,oberta}
+La base de dades es diu "n2o" i conté una única taula anomenada "mesures". 
 Per entrar al mysql sense fer servir la web (ús avançat):
 
 ```

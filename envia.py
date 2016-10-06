@@ -10,6 +10,9 @@ import time
 import processa as Pro
 
 def envia(comanda,ser):
+    if comanda[0] not in ["O","T"]: raise RuntimeError("Comanda desconeguda"); return
+    if comanda[1] not in ["1","2","3","4"]: raise RuntimeError("Comanda desconeguda"); return
+
     ser.flushOutput()
     ser.write(comanda+'\n')
     trama=""

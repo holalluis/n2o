@@ -1,0 +1,12 @@
+# Seqüència de comandes 
+# Sintaxi:
+#    O{N}: Obre vàlvula N
+#    T{N}: Tanca vàlvula N
+#    E{N}: Espera N segons
+
+O1
+E5
+T1
+O2
+E5
+T2

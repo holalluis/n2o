@@ -4,6 +4,17 @@ user="root"
 pass="raspberry"
 url="http://localhost/n2o/novaMesura.php?"
 
+	Arxius afectats:
+		"web/mysql.php"
+		"registra.py"
+		"veureDades.sh"
+
 [serial]
 port="/dev/ttyACM0"
 baudrate=9600
+
+	Arxius afectats:
+		"manual.py"
+		"monitor.py"
+		"sessio.py"
+		"sequencia.py"

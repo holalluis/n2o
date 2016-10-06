@@ -30,6 +30,7 @@ def worker(dades):
 
     #script php que afegeix mesures
     url="http://localhost/n2o/novaMesura.php"
+    url="http://localhost/n2o/web/novaMesura.php"
 
     #campanes
     res=urllib2.urlopen(url+"?campana=1&t="+str(T1)+"&p="+str(P1)+"&v="+str(V1)+"&e="+str(E1))

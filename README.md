@@ -24,29 +24,30 @@ Programes
 
 - inici.sh    : menú principal on es poden executar la resta de programes.
 ![](https://raw.githubusercontent.com/holalluis/n2o/master/gif/inici.gif)
-
 - info.py     : Instruccions per obrir la web i crèdits.
-
-(falta gif animat)
-
-- manual.py   : permet obrir/tancar les vàlvules. Per exemple, la comanda "o1" obre la vàlvula 1.
-
-(falta gif animat)
-
-- monitor.py  : mostra contínuament les dades sense registrar-les a la base de dades. Veure animació:
+- manual.py   : Permet obrir/tancar manualment les vàlvules. Per exemple, la comanda "o1" obre la vàlvula 1.
+- monitor.py  : Mostra de forma contínua l'estat del sistema, sense registrar les dades a la base de dades. Veure animació:
 ![](https://raw.githubusercontent.com/holalluis/n2o/master/gif/monitor.gif)
+- sequencia.py: Permet programar l'ordre d'obertura i tancament de vàlvules i registrar les dades a la base de dades.
+Exemple d'arxiu "sequencia.txt":
 
-- sequencia.py: Permet programar ordre obertura vàlvules i registrar a la base de dades.
+```
+# Seqüència de comandes 
+# Sintaxi:
+#    O{N}: Obre vàlvula N
+#    T{N}: Tanca vàlvula N
+#    E{N}: Espera N segons
+O1
+E5
+T1
+O2
+E5
+T2
+```
 
-(falta gif animat)
-
-- sessio.py   : fa lectures contínuament (cada X temps) i les inserta a la base de dades, sense obrir vàlvules.
-
-(falta gif animat)
-
-- veureDades.sh : mostra les 30 últimes dades insertades.
-
-(falta gif animat)
+- sessio.py   : Fa lectures contínuament (cada X temps) i les inserta a la base de dades, sense obrir vàlvules.
+- veureDades.sh : mostra les 30 últimes dades insertades d'una campana.
+- sequencia.py  : executa el programa creat per l'usuari a l'arxiu "sequencia.txt"
 
 Web
 ===
@@ -68,9 +69,10 @@ Back-end (arxius de desenvolupament)
 
 ## Altres arxius Python
 
-- processa.py : funció que tradueix una trama de bytes de l'Arduino a valors llegibles
-- registra.py : funció que registra una sola lectura a la base de dades 
-- virtual.py  : funció que simula un arduino enviant trames
+- processa.py : funció que tradueix una trama de bytes de l'Arduino a valors llegibles.
+- registra.py : funció que registra una sola lectura a la base de dades.
+- virtual.py  : funció que simula un arduino enviant trames.
+- envia.py    : funció que envia una comanda (obrir/tancar vàlvula) a l'arduino.
 
 ## Codi Arduino (arxiu arduino/nodegasos.ino)
 

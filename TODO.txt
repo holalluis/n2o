@@ -1,6 +1,7 @@
 PENDENT PER FER
 ===============
+* Implementar arxiu config.txt
+* Completar documentació README.md
 
-*l'usuari ha de poder programar la seqüència i temps entre lectures
-
+FET * L'usuari ha de poder programar la seqüència i temps entre lectures
 vim:ft=help:

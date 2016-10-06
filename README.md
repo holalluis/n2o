@@ -51,7 +51,7 @@ T2
 Web
 ===
 
-Per veure les dades i poder descarregar-les en format CSV (excel) s'ha d'accedir a la web creada dins el Raspberry des d'un mòbil o un ordinador 
+Per veure i descarregar les dades en format CSV (excel) s'ha d'accedir a la web des d'un mòbil o un ordinador 
 que estigui a la mateixa xarxa wifi que el Raspberry. La URL és:
 
   http://[ip-del-raspberry]/n2o/ (per exemple: http://192.168.102.200/n2o)
@@ -70,9 +70,9 @@ Back-end (arxius de desenvolupament)
 - __virtual.py__  : funció que simula un arduino enviant trames.
 - __envia.py__    : funció que envia una comanda (obrir/tancar vàlvula) a l'arduino.
 
-## Codi Arduino (arxiu arduino/codi/src/sketch.ino)
+## Codi Arduino (arduino/codi/src/sketch.ino)
 
-Es pot modificar el codi Arduino des del mateix Raspberry utilitzant la comanda ino (http://inotool.org). Algunes comandes:
+Es pot modificar el fitxer `sketch.ino` des del mateix Raspberry utilitzant la comanda `ino` (http://inotool.org). Algunes comandes:
 
 ```
 ino init #crea un nou projecte, i l'arxiu sketch.ino
@@ -81,11 +81,21 @@ ino upload #carrega a l'arduino l'arxiu sketch.ino compilat
 ino serial #mostra per pantalla el monitor serial de l'arduino. Per sortir: ctrl-a ctrl-x
 ```
 
-Aquesta opció és ideal per treballar de forma remota. 
-Important: per arduino mega 2560, cal fer build i upload amb la opcio -m mega2560 (veure documentacio a la web de ino):
+Ino és ideal per treballar de forma remota (per exemple, a través de `ssh`)
+Important: per Arduino Mega cal executar les comandes `build` i `upload` amb l'opció `-m mega2560` (veure documentacio a la web de ino):
 
 ```
 ino build -m mega2560
+```
+
+Tambés es pot crear un fitxer `ino.ini`:
+
+```
+[build]
+board-model = mega2560
+
+[upload]
+board-model = mega2560
 ```
 
 ## Base de dades MySQL

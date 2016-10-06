@@ -1,6 +1,6 @@
 # N2O : Sistema de Sensors + Arduino + Raspberry + MySQL
 
-Última modificació: 5 octubre 2016, Lluís Bosch (lbosch@icra.cat)
+Última modificació: 6 octubre 2016, Lluís Bosch (lbosch@icra.cat)
 
 Introducció
 ===========

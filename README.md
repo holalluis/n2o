@@ -5,9 +5,10 @@
 Idea General (esquema)
 ======================
 
-L'Arduino està contínuament llegint les dades dels sensors i enviant-les al port serial (USB) del Raspberry Pi. Aquest, processa les dades cada X temps, 
-i si l'usuari vol, les emmagatzema a una base de dades.
-
+Aquest paquet de software conté tot el codi necessari per fer funcionar un sistema de sensors i electrovàlvules connectats a un Arduino, 
+i controlats per un Raspberry Pi. L'Arduino està contínuament llegint els sensors i enviant les dades al port serial (USB) del Raspberry Pi. 
+L'usuari controla cada quan vol registrar les dades, i en quin ordre s'obren les 4 electrovàlvules.
+A més, hi ha una web que permet visualitzar les dades i descarregar-les per un posterior anàlisi.
 
      +---------+   +---------+
      | Sensors |-->|         |
@@ -18,15 +19,14 @@ i si l'usuari vol, les emmagatzema a una base de dades.
     +----------+   |         |
                    +---------+
 
-
 Programes
 =========
 
 - inici.sh    : menú principal on es poden executar la resta de programes.
 ![](https://raw.githubusercontent.com/holalluis/n2o/master/gif/inici.gif)
-- info.py     : Instruccions per obrir la web i crèdits.
-- manual.py   : Permet obrir/tancar manualment les vàlvules. Per exemple, la comanda "o1" obre la vàlvula 1.
-- monitor.py  : Mostra de forma contínua l'estat del sistema, sense registrar les dades a la base de dades:
+- info.py     : Mostra breus instruccions per obrir la web i els crèdits del projecte.
+- manual.py   : Permet obrir/tancar manualment les vàlvules utilizant comandes. Per exemple, la comanda "o1" obre la vàlvula 1.
+- monitor.py  : Mostra de forma contínua l'estat del sistema (temperatura i pressió), sense registrar les dades:
 ![](https://raw.githubusercontent.com/holalluis/n2o/master/gif/monitor.gif)
 - sequencia.py: Permet programar l'ordre d'obertura i tancament de vàlvules i registrar les dades a la base de dades.
 Exemple d'arxiu "sequencia.txt":
@@ -45,28 +45,29 @@ E5
 T2
 ```
 
-- sessio.py   : Fa lectures contínuament (cada X temps) i les inserta a la base de dades, sense obrir ni tancar vàlvules.
-- veureDades.sh : mostra les 30 últimes dades insertades d'una campana.
+- sessio.py   : Fa lectures cada X temps i les inserta a la base de dades, sense obrir ni tancar vàlvules.
+- veureDades.sh : mostra les 30 últimes dades insertades de les 4 campanes.
 
 Web
 ===
 
 Per veure les dades i poder descarregar-les en format CSV (excel) s'ha d'accedir a la web creada dins el Raspberry des d'un mòbil o un ordinador 
-que estigui a la mateixa xarxa wifi que el Raspberry. La URL serà:
+que estigui a la mateixa xarxa wifi que el Raspberry. La URL és:
 
   http://[ip-del-raspberry]/n2o/ (per exemple: http://192.168.102.200/n2o)
 
 ![](https://raw.githubusercontent.com/holalluis/n2o/master/gif/web.png)
 
-Per saber la ip del Raspberry ("inet addr"), cal executar la comanda ifconfig a la consola.
-Els fitxers de la web estan a la carpeta web/ però dins el Raspberry han de ser a la carpeta /var/www/n2o.
-Si es fa una modificació a la web, el fitxer "web/desplegaWeb.sh" serveix per copiar 
-els fitxers a la carpeta correcta (necessita permisos d'administrador).
+Per saber la ip del Raspberry cal escriure la comanda "ifconfig" a la consola.
+Els fitxers web s'han de colocar a la carpeta /var/www/n2o.
+El fitxer "desplegaWeb.sh" serveix per copiar els fitxers a la carpeta /var/www/n2o (necessita permisos d'administrador).
+
+```
+./desplegaWeb.sh
+```
 
 Back-end (arxius de desenvolupament)
 ====================================
-
-## Altres arxius Python
 
 - processa.py : funció que tradueix una trama de bytes de l'Arduino a valors llegibles.
 - registra.py : funció que registra una sola lectura a la base de dades.

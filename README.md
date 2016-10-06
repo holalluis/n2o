@@ -57,7 +57,7 @@ que estigui a la mateixa xarxa wifi que el Raspberry. La URL serà:
 
   http://[ip-del-raspberry]/n2o/ (per exemple: http://192.168.102.200/n2o)
 
-(falta imatge)
+![](https://raw.githubusercontent.com/holalluis/n2o/master/gif/web.png)
 
 Per saber la ip del Raspberry ("inet addr"), cal executar la comanda ifconfig a la consola.
 Els fitxers de la web estan a la carpeta web/ però dins el Raspberry han de ser a la carpeta /var/www/n2o.

@@ -2,8 +2,8 @@
 
 Última modificació: 5 octubre 2016, Lluís Bosch (lbosch@icra.cat)
 
-Idea General (esquema)
-======================
+Introducció
+===========
 
 Aquest paquet de software conté tot el codi necessari per fer funcionar un sistema de sensors i electrovàlvules connectats a un Arduino, 
 i controlats per un Raspberry Pi. L'Arduino està contínuament llegint els sensors i enviant les dades al port serial (USB) del Raspberry Pi. 

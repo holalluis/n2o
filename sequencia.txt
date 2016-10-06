@@ -5,8 +5,8 @@
 #    E{N}: Espera N segons
 
 O1
-E5
+E15
 T1
 O2
-E5
+E15
 T2

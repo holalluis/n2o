@@ -7,6 +7,7 @@ import serial
 import envia as Env
 import time
 import processa as Pro
+import registra as Reg
 import sys
 
 #nova connexió serial
@@ -51,6 +52,7 @@ def espera(tempsEspera):
 			if c is "F":
 					try: 
 							d=Pro.processa(trama) #saltarà si la trama és incorrecta
+							for i in range(4): sys.stdout.write("\033[F\033[K")
 							trama=""
 					except: 
 							trama=""
@@ -72,12 +74,15 @@ def espera(tempsEspera):
 
 			#registra la lectura a la base de dades, només si el comptador està a zero
 			if lectures is 0:
-					try: Reg.registra(d)
-					except: print("Error: Dades no registrades")
+					try: 
+						Reg.registra(d)
+					except: 
+						print("Error: Dades no registrades")
 
 			#mostra el volum que s'ha anat comptant
 			if lectures>0:
-					print "Comptant Volum (L): "+str([V1,V2,V3,V4])
+					print "Comptant Volum (L): "+str([V1,V2,V3,V4])+" ("+str(lectures)+" s)"
+					sys.stdout.write("\033[F")
 
 			#fi volta: sumem 1 lectura i esperem 1 segon
 			lectures+=1
@@ -91,8 +96,9 @@ while True:
 	for i in range(len(comandes)):
 		print "[+] sequencia.txt : "+str(comandes)
 		comanda=comandes[i]
-		print "[+] Executant comanda [%s] -> [%s]..." % (i+1,comanda)
+		print "[%s] Executant -> [%s]..." % (i+1,comanda)
 		if comanda[0] in ["O","T"]: Env.envia(comanda,ser)
 		elif comanda[0] is "E": espera(comanda[1:])
 		else: continue
 		print ""
+	print "===== Fi seqüencia.txt. Tornant a començar =====\n"

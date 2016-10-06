@@ -1,7 +1,13 @@
 PENDENT PER FER
 ===============
-* Implementar arxiu config.txt
-* Completar documentació README.md
 
-FET * L'usuari ha de poder programar la seqüència i temps entre lectures
+*AVUI*
+---------------------------------------
+* Crear xarxa wifi des de l'arxiu `/etc/network/interfaces`:
+---------------------------------------
+
+* Completar documentació README.md
+* Implementar arxiu config.txt
+* Crear una web per controlar el sistema
+
 vim:ft=help:

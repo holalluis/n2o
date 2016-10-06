@@ -30,7 +30,6 @@ def worker(dades):
 
     #script php que afegeix mesures
     url="http://localhost/n2o/novaMesura.php"
-    url="http://localhost/n2o/web/novaMesura.php"
 
     #campanes
     res=urllib2.urlopen(url+"?campana=1&t="+str(T1)+"&p="+str(P1)+"&v="+str(V1)+"&e="+str(E1))
@@ -46,3 +45,8 @@ def worker(dades):
     print res.read()
 
     print("")
+
+'''TEST
+dades={'P2':0.0,'P3':0.0,'P1':0.0,'P4':0.0,'T4':22.64,'T2':23.22,'T3':23.05,'T1':23.05,'V1':0,'V2':0,'V3':0,'V4':0,'E4':0,'C3':1,'C2':1,'C1':1,'E2':0,'E1':1,'E3':0,'C4':1}
+registra(dades)
+'''

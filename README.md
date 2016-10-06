@@ -22,13 +22,13 @@ A més, hi ha una web que permet visualitzar les dades i descarregar-les per un 
 Programes
 =========
 
-- inici.sh    : menú principal on es poden executar la resta de programes.
+- __inici.sh__    : menú principal on es poden executar la resta de programes.
 ![](https://raw.githubusercontent.com/holalluis/n2o/master/gif/inici.gif)
-- info.py     : Mostra breus instruccions per obrir la web i els crèdits del projecte.
-- manual.py   : Permet obrir/tancar manualment les vàlvules utilizant comandes. Per exemple, la comanda "o1" obre la vàlvula 1.
-- monitor.py  : Mostra de forma contínua l'estat del sistema (temperatura i pressió), sense registrar les dades:
+- __info.py__     : Mostra breus instruccions per obrir la web i els crèdits del projecte.
+- __manual.py__   : Permet obrir/tancar manualment les vàlvules utilizant comandes. Per exemple, la comanda "o1" obre la vàlvula 1.
+- __monitor.py__  : Mostra de forma contínua l'estat del sistema (temperatura i pressió), sense registrar les dades:
 ![](https://raw.githubusercontent.com/holalluis/n2o/master/gif/monitor.gif)
-- sequencia.py: Permet programar l'ordre d'obertura i tancament de vàlvules i registrar les dades a la base de dades.
+- __sequencia.py__: Permet programar l'ordre d'obertura i tancament de vàlvules i registrar les dades a la base de dades.
 Exemple d'arxiu "sequencia.txt":
 
 ```
@@ -45,8 +45,8 @@ E5
 T2
 ```
 
-- sessio.py   : Fa lectures cada X temps i les inserta a la base de dades, sense obrir ni tancar vàlvules.
-- veureDades.sh : mostra les 30 últimes dades insertades de les 4 campanes.
+- __sessio.py__     : Fa lectures cada X temps i les inserta a la base de dades, sense obrir ni tancar vàlvules.
+- __veureDades.sh__ : mostra les 30 últimes dades insertades de les 4 campanes.
 
 Web
 ===
@@ -58,21 +58,17 @@ que estigui a la mateixa xarxa wifi que el Raspberry. La URL és:
 
 ![](https://raw.githubusercontent.com/holalluis/n2o/master/gif/web.png)
 
-Per saber la ip del Raspberry cal escriure la comanda "ifconfig" a la consola.
-Els fitxers web s'han de colocar a la carpeta /var/www/n2o.
-El fitxer "desplegaWeb.sh" serveix per copiar els fitxers a la carpeta /var/www/n2o (necessita permisos d'administrador).
-
-```
-./desplegaWeb.sh
-```
+Per saber la ip del Raspberry cal escriure la comanda `ifconfig` a la consola.
+Els fitxers web s'han de colocar a la carpeta `/var/www/n2o`.
+El fitxer `desplegaWeb.sh` serveix per copiar els fitxers a la carpeta /var/www/n2o (necessita permisos d'administrador).
 
 Back-end (arxius de desenvolupament)
 ====================================
 
-- processa.py : funció que tradueix una trama de bytes de l'Arduino a valors llegibles.
-- registra.py : funció que registra una sola lectura a la base de dades.
-- virtual.py  : funció que simula un arduino enviant trames.
-- envia.py    : funció que envia una comanda (obrir/tancar vàlvula) a l'arduino.
+- __processa.py__ : funció que tradueix una trama de bytes de l'Arduino a valors llegibles.
+- __registra.py__ : funció que registra una sola lectura a la base de dades.
+- __virtual.py__  : funció que simula un arduino enviant trames.
+- __envia.py__    : funció que envia una comanda (obrir/tancar vàlvula) a l'arduino.
 
 ## Codi Arduino (arxiu arduino/codi/src/sketch.ino)
 
@@ -120,7 +116,7 @@ Per canviar la data al dia 28 de juliol de 2016 a les 18:40:00, cal executar:
 sudo date --set="2016-07-28 18:40:00"
 ```
 
-Per obtenir la hora d'internet, es pot fer amb la comanda ntpd (network time protocol daemon):
+Per obtenir la hora d'internet, es pot fer amb la comanda `ntpd` (network time protocol daemon):
 
 ```
 sudo /etc/init.d/ntp stop
@@ -130,7 +126,7 @@ sudo /etc/init.d/ntp start
 
 ## Configuració Wifi Raspberry
 
-El wifi del Raspberry es configura a l'arxiu /etc/network/interfaces:
+El wifi del Raspberry es configura a l'arxiu `/etc/network/interfaces`:
 
 ```
 auto lo
@@ -143,10 +139,8 @@ iface wlan0 inet dhcp
   wpa-psk "#1wifi09icr@"
 ```
 
-## Com crear un fitxer csv fent servir la comanda "mysql"
+## Com crear un fitxer csv fent servir la comanda `mysql`
 
 ```
 echo "SELECT * FROM mesures WHERE id_campana=1;" | mysql -u root --password=raspberry -D n2o > campana1.csv;
 ```
-
-vim:ts=2:sw=2:expandtab:ft=help:norl:

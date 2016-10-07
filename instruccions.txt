@@ -1,0 +1,28 @@
+Sistema N2O
+-----------
+
+- Login: pi
+- Password: raspberry
+
+To shutdown the Raspberry Pi: sudo halt
+
+Wifi network created by the Raspberry Pi:
+- name: ICRA_N2O
+- pass: icra12345
+
+Enter to 'ICRA_N2O' network with a laptop/mobile and go to:
+
+http://192.168.100.1/n2o
+
+Commands
+./inici.sh : starts the main menu
+
+type the number to acces the following options
+
+Main menu:
+- 1. info 
+- 2. manual mode (allows the user to manually open and close the electrovalves)
+- 3. monitor mode (shows the current values of pressure and temperature, without recording data)
+- 4. sequence mode (allow the user to program a sequence of commands (open/close valves) and record data. File: sequencia.txt) 
+- 5. session mode (records data each N seconds)
+- 6. view data mode (view last 30 readings recorded)

@@ -9,6 +9,7 @@ Aquest paquet de software conté tot el codi necessari per fer funcionar un sist
 i controlats per un Raspberry Pi. L'Arduino està contínuament llegint els sensors i enviant les dades al port serial (USB) del Raspberry Pi. 
 L'usuari controla cada quan vol registrar les dades, i en quin ordre s'obren les 4 electrovàlvules.
 A més, hi ha una web que permet visualitzar les dades i descarregar-les per un posterior anàlisi.
+El raspberry té la capacitat de generar una xarxa wifi a la qual podem accedir per veure la web des d'un pc/mòbil/tablet.
 
      +---------+   +---------+
      | Sensors |-->|         |
@@ -139,6 +140,7 @@ sudo /etc/init.d/ntp start
 El wifi del Raspberry es configura a l'arxiu `/etc/network/interfaces`:
 
 ```
+# codi per fer que el raspberry es connecti a una xarxa wifi
 auto lo
 iface lo inet loopback
 iface eth0 inet dhcp
@@ -149,8 +151,21 @@ iface wlan0 inet dhcp
   wpa-psk "#1wifi09icr@"
 ```
 
+Tutorial per fer que el raspberry generi un wifi access point: 
+https://geekytheory.com/tutorial-rasbperry-pi-como-crear-un-punto-de-acceso-wifi/
+(programes: `hostapd` + `isc-dhcp-server`)
+L'arxiu clau per configurar wifi és `/etc/network/interfaces/`
+
 ## Com crear un fitxer csv fent servir la comanda `mysql`
 
 ```
 echo "SELECT * FROM mesures WHERE id_campana=1;" | mysql -u root --password=raspberry -D n2o > campana1.csv;
 ```
+També es pot fer servir l'script `csv.sh`
+
+## Futur (TO DO)
+
+* Implementar arxiu config.txt
+* Crear una web per controlar el sistema
+
+vim:ft=help:
